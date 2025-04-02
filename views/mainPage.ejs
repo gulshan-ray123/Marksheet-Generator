@@ -1,0 +1,847 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .input{
+            text-align: center;
+            margin-left: 20px;
+            height: 30px;
+            width: 250px;
+            border-radius: 20px;
+        }
+        #login{
+            width: 300px; height: 400px;
+        }
+        #register{
+            width: 300px; height: 400px;
+        }
+        .google-login-button {
+  display: inline-flex;
+  align-items: center;
+  background-color: #ffffff;
+  color: #757575;
+  padding: 10px 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.google-login-button:hover {
+  background-color: #f8f8f8;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.google-login-button:active {
+  background-color: #eeeeee;
+}
+
+.google-logo {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.button-text {
+  font-weight: 500;
+}
+ /* #main{
+  z-index: 1;
+  } */
+    @media (max-width: 768px) {
+            #navbar, #navbar2 {
+                flex-direction: column;
+            }
+
+            #navbar li, #navbar2 li {
+                margin: 10px 0;
+            }
+
+            #sec2 {
+                padding: 80px 20px;
+            }
+
+            #dtl h1 {
+                font-size: 2rem;
+            }
+
+            #dtl h3 {
+                font-size: 1.2rem;
+            }
+
+            #dtl p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #main {
+                width: 100%;
+                margin: 10% auto;
+            }
+
+            #dtl h1 {
+                font-size: 1.8rem;
+            }
+
+            #dtl h3 {
+                font-size: 1rem;
+            }
+
+            #dtl p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="/stylesheets/mainPage.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body >
+    <div style="display: flex; justify-content: center; background-color:#6133ff; width: 400px; border-radius: 10px; margin-left: 40%; margin-top: 10%; z-index: 1; position: absolute; opacity: 0.7; border:  3px solid chartreuse;" id="main">
+       
+        <form action="/login" method="post">
+         <table id="login">
+           
+            <tr>
+                <th colspan="2">Login Here
+                    <button style=" margin-left: 100px; margin-bottom: 10px; padding: 2px 8px 2px 8px;
+                border-radius: 10px; background-color: red ; color: antiquewhite; cursor: pointer;" onclick="remove()">X</button>
+                    <hr style="color: white;">
+                </th>
+               
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="email" placeholder="email" name="email" value="" class="input">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="password" placeholder="password" name="pass" value="" class="input">
+                </td>
+            </tr>
+           
+            <tr>
+                <tr>
+                    <td>
+                        Don't have account?
+                    </td>
+                    <td>
+                        <button style="background-color: rgb(37, 71, 207); color: aqua;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; border-radius: 10px; cursor: pointer;" onclick="Registration()">Register Here</button>
+                    </td>
+                </tr>
+                <td colspan="2">
+                    <button style="margin-left: 70px; width: 150px; background-color: green; color: aqua;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; cursor: pointer;" class="input">Click To Login</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="/auth/google" class="google-login-button">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google Logo" class="google-logo">
+                        <span class="button-text">Login with Google</span>
+                      </a>
+                </td>
+            </tr>
+        </table> 
+    </form>
+        <form action="/register" method="post">
+        <table  style="width: 300px; height: 300px;" id="register">
+            <tr>
+                <th colspan="2">Register Here</th>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="username" placeholder="Enter username" name="user_name" value="" class="input">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="email" placeholder="email" name="email" value="" class="input">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="password" placeholder="password" name="pass" value="" class="input">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="password" placeholder="Confirm Password" name="con_pass" value="" class="input">
+                </td>
+            </tr>
+            <tr>
+                <tr>
+                    <td>
+                        If Registered
+                    </td>
+                    <td>
+                        <button style="background-color: rgb(37, 71, 207); color: aqua;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; border-radius: 10px; cursor: pointer;" onclick="Login()">Login Here</button>
+                    </td>
+                </tr>
+                <td colspan="2">
+                    <button style="margin-left: 70px; width: 150px; background-color: green; color: aqua;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; cursor: pointer;" class="input">Click To Register</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    </div>
+    <div> 
+        <div id="lap">
+    <header id="hd1">
+        <ul id="navbar">
+            <li><img src="dim logo.jpg" alt="logo" id="dim_img"></li>
+            <li><a href="Registration.ejs">Home</a></li>
+            <li><a>About</a></li>
+            <li><a>Resources</a></li>
+            <li><a>Contact</a></li>
+            <li><a><button class="sign" onclick="add()"  >Sign in</button></a></li>
+        </ul>
+       </header>
+      
+    <section id="sec2">
+        <div id="dtl">
+            <h1>Marksheet Generator</h1>
+            <h3>Generate your Marksheet Anywhere</h3>
+            <p id="desp">At MArksheet Generator,we are intended to ease school staff to generate marksheet.
+            Removing the traditional methods for marksheet generation </p>
+            <button class="sign" style="position: absolute; top: 18rem;">Read More</button>
+            <button id="School">Administrator</button>
+            <marquee style="color: aquamarine; font-family: 'Times New Roman', Times, serif; font-size: 20px;"> Quick Links
+            </marquee>
+        </div>
+        <div id="img"></div>
+    </section>
+    <section id="facility">
+        <strong class="spdtl">Our Specilities</strong>
+        <hr style="width: 10rem;">
+        <div class="spec"><strong style="text-align: centre;">Flexible Result Structure</strong>
+            <span style="background-color: aliceblue; margin-top: 1rem; display: inline-flex; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; border-radius: 10px;">
+                Create custom result structure by giving different weightage to internal exams, final exams, practicals, assignments, or combination of few. SkoolSheet gives complete flexibility to design result structure according to board marking scheme.</span>
+        </div>
+        <div class="spec"> <strong style="text-align: centre;">Assign Marks</strong>
+            <span style="background-color: aliceblue; margin-top: 1rem; display: inline-flex; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; border-radius: 10px;">
+                Subject teachers can easily assign marks to their students for specific exams, give remarks in the same interface. After assigning marks result can be generated automatically based on the marks.</span>
+        </div>
+        <div class="spec">
+            <strong style="text-align: centre;">Marksheet Generator</strong>
+            <span style="background-color: aliceblue; margin-top: 1rem; display: inline-flex; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; border-radius: 10px;">
+                Design marksheet/report card by showing desired fields, custom school logo, board logo, authority signatures & lot more. Generate marksheets in single click and easily export them for printing.</span>
+        </div>
+    </section>
+    <section id="mission">
+        <h2 class="spdtl">Mission and Values</h2><hr style="width: 10rem;">
+        <h2 class="vsn">Vision</h2>
+        <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: bisque; font-size: 15px; margin-left: 20px;">Our Vision is to generate a solution that help local schools or institution to generate marksheet for their student at free of cost.</p>
+        <h2 class="vsn">Mission</h2>
+        <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: bisque; font-size: 15px; margin-left: 20px;">To Empower every household with access to quality education,fostering a culture of lifelong <br>learning and community engagement for a brighter future</p>
+        <a href="https://maps.app.goo.gl/vXjj9b7xArTZzZJg8"></a>
+    </section>
+    <section id="staff">
+        <h2 class="spdtl"> Our<b style="color: coral;"> Services </b> and <b style="color: yellowgreen;">Speciality</b></h2><hr style="width: 10rem;">
+        <div class="spec" >
+            <h2>Generate ReportCard Blueprint</h2>
+            <a href="/blueprint/ReportCard"><button>Click Here</button></a> 
+        </div>
+        <div class="spec">
+             <h2>Register Student</h2>
+            <a href="/studentRegistration"><button>Click Here</button></a></div>
+        <div class="spec">
+            <h2>Generate Marksheet</h2>
+            <a href="/fill/marks"><button>Click Here</button></a>
+        </div>
+    </section>
+</div>
+<div id="mob">
+    <marquee style="color: aquamarine; font-family: 'Times New Roman', Times, serif; font-size: 20px;">Quick Links</marquee>
+<!-- <button id="menu" onclick="display_navbar()">Menu</button> 
+    <header id="hd2">
+        <ul id="navbar2">
+            <li><img src="dim logo.jpg" alt="logo"id="dim_img"></li>
+            <li><a class="ls_dtl">Home</a></li>
+            <li><a class="ls_dtl">About</a></li>
+            <li><a class="ls_dtl">Resources</a></li>
+            <li><a class="ls_dtl">Contact</a></li>
+            <li><a class="ls_dtl"><button class="sign">Sign in</button></a></li>
+        </ul>
+       </header>
+       <section id="sec2">
+        <div id="dtl">
+            <h1>Marksheet Generator</h1>
+            <h3>Generate your Marksheet Anywhere.</h3>
+            <p id="desp">At Marksheet Generator,we are intended to ease school staff to generate marksheet.
+                Removing the traditional methods for marksheet generation</p>
+            <button class="sign" style="position: absolute; top: 18rem;">Read More</button>
+            <button id="School">Administrator</button>
+        </div>
+       </section>
+</div>
+</div>
+    <!-- <footer><h2 style="text-align: center;">Contact Us:</h2>
+        <ul id="footer1">
+            <li><a href="https://www.facebook.com/gulshanray2003"><i class="fa-brands fa-square-facebook" id="facebook"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/gulshan-kumar-ray-5243072b0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fa-brands fa-linkedin" id="linkedin"></i></a></li>
+            <li><a><i class="fa-brands fa-square-x-twitter" id="twitter"></i></a></li>
+            <li> <a href="https://wa.me/9354330996?text="Hello""><i class="fa-brands fa-square-whatsapp" id="watsapp"></i></a></li>
+            <li><a href="https://www.instagram.com/raygulshan2003"><i class="fa-brands fa-square-instagram" id="instagram"></i></a></li>
+            <li><a><button class="sign">Sign in</button></a></li>
+        </ul>
+    </footer> 
+    <script src="/javascripts/mainPage.js"></script>
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marksheet Generator</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #6133ff, #33a1ff);
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .input {
+            text-align: center;
+            margin: 10px 0;
+            height: 40px;
+            width: 100%;
+            max-width: 300px;
+            border-radius: 25px;
+            border: 2px solid #ccc;
+            padding: 0 15px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .input:focus {
+            border-color: #33a1ff;
+        }
+        .button {
+  background: linear-gradient(45deg, #ff416c, #ff4b2b);
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(45deg, #ff4b2b, #ff416c);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+.button:active {
+  transform: scale(0.98);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+        #main {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+            margin: 5% auto;
+            text-align: center;
+        }
+
+        #login {
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+           
+        }
+        #register{
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+           
+        }
+        .google-login-button {
+            display: inline-flex;
+            align-items: center;
+            background-color: #ffffff;
+            color: #757575;
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, box-shadow 0.3s;
+            margin: 10px 0;
+        }
+
+        .google-login-button:hover {
+            background-color: #f8f8f8;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .google-logo {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .button-text {
+            font-weight: 500;
+        }
+
+        /* Header and Navigation */
+        #hd1_lap {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        #hd1_mob{
+            display: none;
+        }
+        #navbar, #navbar2 {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        #menu {
+                    display: none;
+                    background-color: #33a1ff;
+                    color: #fff;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 25px;
+                    font-size: 16px;
+                    margin: 10px auto;
+                    cursor: pointer;
+            }
+        #navbar li, #navbar2 li {
+            margin: 0 10px;
+        }
+
+        #navbar a, #navbar2 a {
+            color: #fff;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        #navbar a:hover, #navbar2 a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .sign {
+            background: #33a1ff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 16px;
+        }
+
+        .sign:hover {
+            background: #6133ff;
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        #sec2 {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 100px 20px;
+        }
+
+        #dtl h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        #dtl h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        #dtl p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+
+        #School {
+            background: #ff3366;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 16px;
+        }
+
+        #School:hover {
+            background: #ff1a53;
+        }
+
+        .spec {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .spec strong {
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .spec span {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .spdtl {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .vsn {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            text-align: center;
+        }
+
+      /* Centering the email button */
+.email-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Adds space above */
+}
+
+/* Email Button Styling */
+.email-button {
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.email-button:hover {
+    background: linear-gradient(135deg, #ff512f, #dd2476);
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.email-button:active {
+    transform: scale(0.98);
+}
+
+.email-button::before {
+    content: "📧";
+    font-size: 20px;
+}
+
+
+        #footer1 {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #footer1 li {
+            margin: 0 10px;
+        }
+
+        #footer1 a {
+            color: #fff;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        #footer1 a:hover {
+            color: #33a1ff;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            #navbar, #navbar2 {
+                flex-direction: column;
+            }
+            #hd1{
+             /* display: none; */
+             margin-top: 50px;
+            }
+            #navbar li, #navbar2 li {
+                margin: 10px 0;
+            }
+            #sec2 {
+                padding: 80px 20px;
+            }
+
+            #dtl h1 {
+                font-size: 2rem;
+            }
+
+            #dtl h3 {
+                font-size: 1.2rem;
+            }
+
+            #dtl p {
+                font-size: 1rem;
+            }
+            #menu {
+                    display: block;
+                    background-color: #33a1ff;
+                    color: #fff;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 25px;
+                    font-size: 16px;
+                    margin: 10px auto;
+                    cursor: pointer;
+            }
+            #hd1_mob {
+            display: block;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            margin-top: 60px;
+        }
+        #hd1_lap{
+            display: none;
+        }
+        }
+
+        @media (max-width: 480px) {
+           
+            #hd1_mob {
+            display: block;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            margin-top: 60px;
+        }
+        #hd1_lap{
+            display: none;
+        }
+            #main {
+                width: 100%;
+                margin: 10% auto;
+            }
+            #hd1{
+             /* display: none; */
+             margin-top: 50px;
+            }
+            #dtl h1 {
+                font-size: 1.8rem;
+            }
+
+            #dtl h3 {
+                font-size: 1rem;
+            }
+
+            #dtl p {
+                font-size: 0.9rem;
+            }
+            #menu {
+                    display: block;
+                    background-color: #33a1ff;
+                    color: #fff;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 25px;
+                    font-size: 16px;
+                    margin: 10px auto;
+                    cursor: pointer;
+            }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+   
+    <div id="lap">
+        <button id="menu" onclick="show()">Menu</button>
+        <header id="hd1_lap">
+            <ul id="navbar">
+                <li><img src="https://i.pinimg.com/736x/3f/a7/a3/3fa7a3f3f4eff2b730de3c584569b694.jpg" alt="logo" id="dim_img" height="40px" style="border-radius: 30px;"></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="#mission">About</a></li>
+                <li><a href="#ft">Contact</a></li>
+                <li><a href="/view/marksheet/student/google"><button class="sign">Dashboard By Google</button></a></li>
+                <li><a href="/home/login/page"><button class="sign">Sign in</button></a></li>
+                <li><a href="/view/marksheet/student"><button class="sign">Dashboard</button></a></li>
+            </ul>
+        </header>
+        <header id="hd1_mob">
+            <ul id="navbar">
+                <li><img src="https://i.pinimg.com/736x/3f/a7/a3/3fa7a3f3f4eff2b730de3c584569b694.jpg" alt="logo" id="dim_img"></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="#mission">About</a></li>
+                <li><a href="#ft">Contact</a></li>
+                <li><a href="/view/marksheet/student/google"><button class="sign">Dashboard By Google</button></a></li>
+                <li><a href="/home/login/page"><button class="sign">Sign in</button></a></li>
+                <li><a href="/view/marksheet/student"><button class="sign">Dashboard</button></a></li>
+            </ul>
+        </header>
+        <section id="sec2">
+            <div id="dtl">
+                <h1>Marksheet Generator</h1>
+                <h3>Generate your Marksheet Anywhere</h3>
+                <p id="desp">At Marksheet Generator, we are intended to ease school staff to generate marksheet. Removing the traditional methods for marksheet generation.</p>
+                <button class="sign">Read More</button>
+                <a href="/admin/registration/page"><button id="School">Administrator</button></a>
+                <marquee>Quick Links</marquee>
+            </div>
+        </section>
+        <section id="facility">
+            <strong class="spdtl">Our Specialities</strong>
+            <hr>
+            <div class="spec">
+                <strong>Flexible Result Structure</strong>
+                <span>Create custom result structure by giving different weightage to internal exams, final exams, practicals, assignments, or combination of few. SkoolSheet gives complete flexibility to design result structure according to board marking scheme.</span>
+            </div>
+            <div class="spec">
+                <strong>Assign Marks</strong>
+                <span>Subject teachers can easily assign marks to their students for specific exams, give remarks in the same interface. After assigning marks result can be generated automatically based on the marks.</span>
+            </div>
+            <div class="spec">
+                <strong>Marksheet Generator</strong>
+                <span>Design marksheet/report card by showing desired fields, custom school logo, board logo, authority signatures & lot more. Generate marksheets in single click and easily export them for printing.</span>
+            </div>
+        </section>
+        <section id="mission">
+            <h2 class="spdtl">Mission and Values</h2>
+            <hr>
+            <h2 class="vsn">Vision</h2>
+            <p>Our Vision is to generate a solution that help local schools or institution to generate marksheet for their student at free of cost.</p>
+            <h2 class="vsn">Mission</h2>
+            <p>To Empower every household with access to quality education, fostering a culture of lifelong learning and community engagement for a brighter future.</p>
+        </section>
+        <section id="staff">
+            <h2 class="spdtl">Our <b>Services</b> and <b>Speciality</b></h2>
+            <hr>
+            <div class="spec">
+                <h2>Generate ReportCard Blueprint</h2>
+                <a href="/admin/registration/page"><button class="button">Click Here</button></a>
+            </div>
+            <div class="spec">
+                <h2>Register Student</h2>
+                <a href="/admin/registration/page"><button class="button">Click Here</button></a>
+            </div>
+            <div class="spec">
+                <h2>Generate Marksheet</h2>
+                <a href="/admin/registration/page"><button class="button">Click Here</button></a>
+            </div>
+        </section>
+    </div>
+    <footer id="ft">
+        <h2>Contact Us:</h2>
+        <ul id="footer1">
+            <li><a href="https://www.facebook.com/share/1K7RgULKch/"><i class="fa-brands fa-facebook"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/gulshan-kumar-ray-5243072b0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fa-brands fa-linkedin"></i></a></li>
+            <li><a href="https://x.com/Gulshan83816998?t=yGBduGbzmEdO1B_oFnaN6g&s=09"><i class="fa-brands fa-twitter"></i></a></li>
+            <li><a href="'https://wa.me/9354330996?text="Hello"'"><i class="fa-brands fa-whatsapp"></i></a></li>
+            <li><a href="https://www.instagram.com/gulshan_ray111"><i class="fa-brands fa-instagram"></i></a></li>
+        </ul>
+        <div class="email-container">
+            <button class="email-button" onclick="window.location.href='mailto:gk0507818@gmail.com'">
+                📧 Email Us
+            </button>
+            <p class="contact-info">📞 Contact: <a href="tel:+1234567890">+91 9354330996</a></p>
+        </div>
+    </footer>
+    <script>
+        // JavaScript to toggle the mobile menu
+let btn= document.querySelector('#menu');
+let lrn=document.querySelector('#hd1_mob');
+lrn.style.display='none';
+let display=0;
+function show(){
+    if(display==0){
+        lrn.style.display='block';
+        display=1;
+        document.querySelector('#menu').innerHTML="X";
+    }
+    else{
+        lrn.style.display='none';
+        display=0;
+        document.querySelector('#menu').innerHTML='Menu';
+    }  
+}
+    </script>
+</body>
+</html>
+
+

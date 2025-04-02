@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #main{
+        background-image: url(https://img.freepik.com/free-photo/arrangement-desk-elements-with-copy-space_23-2148513312.jpg?t=st=1736355627~exp=1736359227~hmac=0f1028eaf71773babf69234de9abcec8f3a03d7bee8c6ed717351c5c116b3c43&w=1380);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        width: 100vw;
+        background-size: cover;
+    }
+    #container{
+        height: 40vmax;
+        background-color: #58a3cb;
+        width: 32vmax;
+        border-radius: 30px;
+        margin-top: 10vh;
+        filter: drop-shadow(3px 5px 10px teal);
+    }
+    /* @media only screen and (max-width:1000px){
+        #container{
+            height: 100vmax;
+            width: 97vw;
+            margin-right: 20px;
+        } 
+    } */
+    #mob{
+        display: none;
+    }
+    /* #lap{
+        display: block;
+    } */
+     #menu_btn{
+        display: none;
+    }
+    @media (max-width: 480px){
+        #mob{
+            display: block;
+            height: 14rem;
+            position: absolute;
+            width: 100vw;
+        }
+        #lap{
+            display: none;
+        }
+        li{
+            margin-top: 5px;
+        }
+        #container{
+        height: 125vmax;
+        background-color: #58a3cb;
+        width: 50vmax;
+        border-radius: 30px;
+        filter: drop-shadow(3px 5px 10px teal);
+        margin-top: 250px;
+    }
+    /* input{
+        height: 10px;
+    } */
+    #menu{
+        display: block;
+        background-color: #33a1ff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    #menu_btn{
+        display: block;
+    }
+    }
+    #header{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(to right,#007991,#78ffd6);
+        height: 2px;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        padding: 20px 0;
+    }
+    #header h2{
+        color: #222;
+        font-size: 24px;
+        text-transform: uppercase;
+        text-align: center;  
+    }
+    #form{
+        padding: 40px;
+    }
+    .form-control{
+        margin-bottom: 10px;
+        position: relative;
+    }
+    .form-control label{
+        display: inline-block;
+        margin-bottom: 5px;
+    }
+    .form-control input{
+        width: 100%;
+        border: 2px solid #f0f0f0;
+        border-radius: 5px;
+        display: block;
+        font-size: 14px;
+        padding: 12px;
+    }
+    .form-control input:focus{
+        outline: 0;
+        border-color: #1b2fc9;
+    }
+    .form-control.success input{
+        border-color: #2ecc71;
+    }
+    .form-control.error input{
+        border-color: #e74c3c;
+    }
+    .form-control i{
+        position: absolute;
+        right: 5%;
+        top: 38px;
+        visibility: hidden;
+    }
+    .form-control.error small{
+        visibility: visible;
+    
+    }
+    .form-control small{
+        color: #e74c3c;
+        position: absolute;
+       
+        visibility:hidden;
+    }
+    .form-control.success i.fa-circle-check{
+        color: #2ecc71;
+        visibility: visible;
+    }
+    .form-control.error i.fa-circle-xmark{
+        color: #e74c3c;
+        visibility: visible;
+    }
+    
+    .btn{
+        background: linear-gradient(to right,#007991,#78ffd6);
+        border-radius: 10px;
+        border: none;
+        outline: none;
+        color: #fff;
+        display: block;
+        font-size: 16px;
+        padding: 15px 0;
+        width:90%;
+        font-weight: bold;
+        text-transform: uppercase;
+        transition: all 1s ease;
+        position: absolute;
+        right: 20px;
+    }
+    .btn:hover{
+        background: linear-gradient(to left,#007991,#78ffd6);
+    }
+    
+    .form-control2{
+        margin: 20px;
+        position: relative; 
+    }
+    *{
+        margin: 0px 0px 0px 0px;
+    }
+    #menu {
+        background-color: #33a1ff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-size: 16px;
+        margin: 10px auto;
+        cursor: pointer;
+            }
+    </style>
+<body>
+       <div style="background-color:skyblue;; height: 60px;" id="menu_btn">
+    <button id="menu" onclick="show()">Menu</button>
+</div>
+<header style="background-color: skyblue;" id="lap">
+    <a href="/logout/admin" ><button style="padding: 10px; border-radius: 20px; margin-left: 8rem; cursor: pointer;">Logout</button></a>
+    <a href="/"><button style="padding: 10px; border-radius: 20px; margin-left: 5rem; cursor: pointer;">Home</button></a>
+    <a href="/blueprint/ReportCard"><button style="padding: 10px; border-radius: 20px; margin-left: 5rem; cursor: pointer;">Report Card Blueprint</button></a>
+    <a href="/fill/marks"><button style="padding: 10px; border-radius: 20px; margin-left: 5rem; cursor: pointer;">Marks Filling</button></a>
+    <a href="/view/marksheet/admin"><button style="padding: 10px; border-radius: 20px; margin-left: 5rem; cursor: pointer;">Show Marksheet</button></a>
+    <a href="/dis/page"><button style="padding: 10px; border-radius: 20px; margin-left: 5rem; cursor: pointer;">Fill Disciplinary Marks</button></a>
+  </header>
+
+  <header style="background-color: skyblue;" id="mob">
+    <ul style="list-style: none;">
+    <li><a href="/logout" ><button style="padding: 5px; border-radius: 20px; margin-left: 5rem; cursor: pointer;">Logout</button></a></li>
+    <li><a href="/"><button style="padding: 5px; border-radius: 20px; margin-left: 5rem; cursor: pointer;">Home</button></a></li>
+    <li> <a href="/blueprint/ReportCard"><button style="padding: 5px; border-radius: 20px; margin-left: 5rem; cursor: pointer;">Report Card Blueprint</button></a></li>
+   <li><a href="/fill/marks"><button style="padding: 5px; border-radius: 20px; margin-left: 5rem; cursor: pointer;">Marks Filling</button></a></li>
+   <li> <a href="/view/marksheet/admin"><button style="padding: 5px; border-radius: 20px; margin-left: 5rem; cursor: pointer;">Show Marksheet</button></a></li>
+   <li><a href="/dis/page"><button style="padding: 5px; border-radius: 20px; margin-left: 5rem; cursor: pointer;">Fill Disciplinary Marks</button></a></li>
+</ul>
+  </header>
+      <div id="main">
+        <div id="container">
+            <div id="header">
+                <h2>Disciplinary Grade </h2>
+            </div>
+            <form action="/update/result/securitykey" id="form" method="post" >
+                <div class="form-control" >
+                    <label for="Student_name">Old Result Key:</label> <br>
+                    <input type="number" id="old_res_key" name="old_res_key">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <i class="fa-solid fa-circle-xmark"></i>
+                    <small>Error Message</small>
+                </div>
+                <div class="form-control">
+                    <label for="Father_name">New Result Security Key:</label><br>
+                    <input type="number"  id="new_res_key" name="new_res_key">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <i class="fa-solid fa-circle-xmark"></i>
+                    <small>Error Message</small>
+                </div>
+                <input type="submit" value="Submit" class="btn" name="" style="cursor: pointer;">
+            </form>
+                <form action="/update/admin/securitykey" id="form" method="post">
+                    <div class="form-control" >
+                        <label for="Student_name">Admin Email:</label> <br>
+                        <input type="email" id="admin_email" name="admin_email">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <i class="fa-solid fa-circle-xmark"></i>
+                        <small>Error Message</small>
+                    </div>
+                    <div class="form-control">
+                        <label for="Father_name">New Admin Security Key:</label><br>
+                        <input type="number"  id="new_admin_key" name="new_admin_key">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <i class="fa-solid fa-circle-xmark"></i>
+                        <small>Error Message</small>
+                    </div>
+                    <input type="submit" value="Submit" class="btn" name="" style="cursor: pointer;">
+                </form>
+    </div>
+</div>
+</body>
+</html>

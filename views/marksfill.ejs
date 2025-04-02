@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+#main{
+    background-image: url(https://img.freepik.com/free-photo/arrangement-desk-elements-with-copy-space_23-2148513312.jpg?t=st=1736355627~exp=1736359227~hmac=0f1028eaf71773babf69234de9abcec8f3a03d7bee8c6ed717351c5c116b3c43&w=1380);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100vw;
+    background-size: cover;
+}
+#container{
+    height: 32vmax;
+    background-color: #58a3cb;
+    width: 32vmax;
+    border-radius: 30px;
+    margin-top: 5vh;
+    filter: drop-shadow(3px 5px 10px teal);
+}
+/* @media only screen and (max-width:1000px){
+    #container{
+        height: 100vmax;
+        width: 97vw;
+        margin-right: 20px;
+    } 
+} */
+#mob{
+    display: none;
+}
+/* #lap{
+    display: block;
+} */
+ #menu_btn{
+    display: none;
+}
+@media (max-width: 480px){
+    #mob{
+        display: block;
+        height: 14rem;
+        position: absolute;
+        width: 100vw;
+    }
+    #lap{
+        display: none;
+    }
+    li{
+        margin-top: 5px;
+    }
+    #container{
+    height: 125vmax;
+    background-color: #58a3cb;
+    width: 50vmax;
+    border-radius: 30px;
+    filter: drop-shadow(3px 5px 10px teal);
+    margin-top: 250px;
+}
+/* input{
+    height: 10px;
+} */
+#menu{
+    display: block;
+    background-color: #33a1ff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+}
+#menu_btn{
+    display: block;
+}
+}
+#header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right,#007991,#78ffd6);
+    height: 2px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    padding: 20px 0;
+}
+#header h2{
+    color: #222;
+    font-size: 24px;
+    text-transform: uppercase;
+    text-align: center;  
+}
+#form{
+    padding: 40px;
+}
+.form-control{
+    margin-bottom: 10px;
+    position: relative;
+}
+.form-control label{
+    display: inline-block;
+    margin-bottom: 5px;
+}
+.form-control input{
+    width: 100%;
+    border: 2px solid #f0f0f0;
+    border-radius: 5px;
+    display: block;
+    font-size: 14px;
+    padding: 12px;
+}
+.form-control input:focus{
+    outline: 0;
+    border-color: #1b2fc9;
+}
+.form-control.success input{
+    border-color: #2ecc71;
+}
+.form-control.error input{
+    border-color: #e74c3c;
+}
+.form-control i{
+    position: absolute;
+    right: 5%;
+    top: 38px;
+    visibility: hidden;
+}
+.form-control.error small{
+    visibility: visible;
+
+}
+.form-control small{
+    color: #e74c3c;
+    position: absolute;
+   
+    visibility:hidden;
+}
+.form-control.success i.fa-circle-check{
+    color: #2ecc71;
+    visibility: visible;
+}
+.form-control.error i.fa-circle-xmark{
+    color: #e74c3c;
+    visibility: visible;
+}
+
+.btn{
+    background: linear-gradient(to right,#007991,#78ffd6);
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    color: #fff;
+    display: block;
+    font-size: 16px;
+    padding: 15px 0;
+    width:90%;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 1s ease;
+    position: absolute;
+    right: 20px;
+}
+.btn:hover{
+    background: linear-gradient(to left,#007991,#78ffd6);
+}
+
+.form-control2{
+    margin: 20px;
+    position: relative; 
+}
+*{
+    margin: 0px 0px 0px 0px;
+}
+#menu {
+    background-color: #33a1ff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    margin: 10px auto;
+    cursor: pointer;
+        }
+</style>
+<body>
+      <div style="background-color:skyblue;; height: 60px;" id="menu_btn">
+    <button id="menu" onclick="show()">Menu</button>
+</div>
+<header style="background-color: skyblue;" id="lap">
+    <a href="/logout/admin" ><button style="padding: 10px; border-radius: 20px; margin-left: 8rem; cursor: pointer;">Logout</button></a>
+    <a href="/"><button style="padding: 10px; border-radius: 20px; margin-left: 5rem; cursor: pointer;">Home</button></a>
+    <a href="/blueprint/ReportCard"><button style="padding: 10px; border-radius: 20px; margin-left: 5rem; cursor: pointer;">Report Card Blueprint</button></a>
+    <a href="/fill/marks"><button style="padding: 10px; border-radius: 20px; margin-left: 5rem; cursor: pointer;">Marks Filling</button></a>
+    <a href="/view/marksheet/admin"><button style="padding: 10px; border-radius: 20px; margin-left: 5rem; cursor: pointer;">Show Marksheet</button></a>
+    <a href="/dis/page"><button style="padding: 10px; border-radius: 20px; margin-left: 5rem; cursor: pointer;">Fill Disciplinary Marks</button></a>
+  </header>
+
+  <header style="background-color: skyblue;" id="mob">
+    <ul style="list-style: none;">
+    <li><a href="/logout" ><button style="padding: 5px; border-radius: 20px; margin-left: 5rem; cursor: pointer;">Logout</button></a></li>
+    <li><a href="/"><button style="padding: 5px; border-radius: 20px; margin-left: 5rem; cursor: pointer;">Home</button></a></li>
+    <li> <a href="/blueprint/ReportCard"><button style="padding: 5px; border-radius: 20px; margin-left: 5rem; cursor: pointer;">Report Card Blueprint</button></a></li>
+   <li><a href="/fill/marks"><button style="padding: 5px; border-radius: 20px; margin-left: 5rem; cursor: pointer;">Marks Filling</button></a></li>
+   <li> <a href="/view/marksheet/admin"><button style="padding: 5px; border-radius: 20px; margin-left: 5rem; cursor: pointer;">Show Marksheet</button></a></li>
+   <li><a href="/dis/page"><button style="padding: 5px; border-radius: 20px; margin-left: 5rem; cursor: pointer;">Fill Disciplinary Marks</button></a></li>
+</ul>
+  </header>
+    <div id="main">
+    <div id="container">
+    <form action="/blueprint/Marksheet" method="post">
+        <table border="2" style="height: 70vh; width: 32vw; border-radius: 20px;">
+            <tr>
+                <th colspan="5">Fill Student Marks</th>
+            </tr>
+            <tr>
+                <td colspan="5" style="text-align: center;">Student's Enrollement ID:
+                <input type="number" name="eid" value="" id="st_enroll"></td>
+            </tr>
+            <tr>
+                <td colspan="5" style="text-align: center;">Affiliation Number:
+                <input type="number" name="aff_id" value="" id="st_aff"></td>
+            </tr>
+            <tr>
+                <td colspan="3">Enter Maximum Theory Marks</td>
+                <td colspan="2"><input type="number" style="width: 50px;" name="max_thry" ></td>
+                
+            </tr>
+            <tr>
+                <td colspan="3">Enter Maximum Practicle Marks</td>
+                <td colspan="2"><input type="number" style="width: 50px;" name="max_prac"></td>
+            </tr>
+            <!-- <tr>
+                <th colspan="3">Term 1</th>
+                <!-- <th colspan="2">Term 2</th> -->
+            </tr> 
+            <tr>
+                <th>Term 1 Marks</th>
+            </tr>
+            <tr>
+                <td>Subject</td>
+                <td><select name="opt">
+                    <option>English</option>
+                    <option>Hindi</option>
+                    <option>Social Studies</option>
+                    <option>Mathematics</option>
+                    <option>General Knowledge</option>
+                    <option>Science</option>
+                    <option>Computer Science</option>
+                    <option>Art and Craft</option>
+                    <option>Physical Test/Edu.</option>
+                    <option>Value Edu.</option>
+                    <option>EVS</option>
+                    <option>Sanskrit</option>
+                    <option>Robotics</option>
+                    <option>Physics</option>
+                    <option>Chemistry</option>
+                    <option>Biology</option>
+                    <option>Mathematics</option>
+                    <option>Economics</option>
+                    <option>Accountancy</option>
+                    <option>Business Studies</option>
+                    <option>Statistics</option>
+                    <option>History</option>
+                    <option>Political Science</option>
+                    <option>Geography</option>
+                    <option>Home Science</option>
+                    <option>Sociology</option>
+                </select></td>
+               
+            </tr>
+            <tr>
+                <td colspan="5"> OR Enter Custom Subjects </td>
+            </tr>
+            <tr><td colspan="3">Subject Name:</td>
+            <td colspan="2"><input type="text" name="opt" style="width: 50px;"></td>
+            </tr>
+            <tr>
+                <td>Theory Marks</td>
+                <td><input type="number" name="theory" id="theory_term1" value=""></td>
+            </tr>
+            <tr>
+                <td>Practicle  Marks</td>
+                <td><input type="number" name="prac" id="prac_term1" onchange="CalculateMarks()" value=""></td>
+            </tr>
+            <tr>
+                <tr>
+                    <td>Total Marks</td>
+                    <td><input type="number" placeholder="Total" name="total_marks" value="" id="ttl_mrk"  onchange="CalculateMarks()"></td>
+                </tr>
+                <tr>
+                    <td>Grade</td>
+                    <td><input type="text" placeholder="Grade" name="grade" value="" id="grade" onchange="CalculateMarks()" ></td>
+                </tr>
+               
+                <tr>
+                <th>Term 2 Marks</th>
+            </tr>
+            <tr>
+                <td>Theory Marks</td>
+                <td><input type="number" name="theory_term2" id="theory_term2" value=""></td>
+            </tr>
+            <tr>
+                <td>Practicle  Marks</td>
+                <td><input type="number" name="prac_term2" id="prac_term2" onchange=" claculateMarks_term2()" value=""></td>
+            </tr>
+            <tr>
+                <tr>
+                    <td>Total Marks</td>
+                    <td><input type="number" placeholder="Total" name="total_marks2" value="" id="ttl_mrk2"  onchange=" claculateMarks_term2()"></td>
+                </tr>
+                <tr>
+                    <td>Grade</td>
+                    <td><input type="text" placeholder="Grade" name="grade2" value="" id="grade2" onchange=" claculateMarks_term2()" ></td>
+                </tr>
+                   <tr>
+                    <td><input type="submit"></td>
+                    <td><input type="reset"></td>
+                   </tr>
+                </form>
+                <!-- <form action="/disciplinary/grade" method="post">
+                    <tr>
+                        <th colspan="2">Filled Only Once</th>
+                    </tr>
+                    <tr>
+                        <td colspan="5" style="text-align: center;">Student's Enrollement ID:
+                        <input type="number" name="dis_eid" value="" id="enr_dis" onchange=" Disciplinary()"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" style="text-align: center;">Affiliation Number:
+                        <input type="number" name="dis_aff_id" value="" id="aff_dis" onchange=" Disciplinary()"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Discipline Term 1
+                        </td>
+                        <td>
+                            <select id="dis" name="dis_grade">
+                                <option>A</option>
+                                <option>B</option>
+                                <option>C</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Discipline Term 2
+                        </td>
+                        <td>
+                            <select id="dis" name="dis_grade2">
+                                <option>A</option>
+                                <option>B</option>
+                                <option>C</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit"></td>
+                        <td><input type="reset"></td>
+                    </tr>
+                </form> -->
+                </div>
+            </table>
+       </div>
+    </div>
+</body>
+<script src="/javascripts/markSheetinfo.js"></script>
+</html>

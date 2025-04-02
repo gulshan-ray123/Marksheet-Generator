@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      table {
+    position: relative;
+    border-collapse: collapse;
+    background: white; /* Ensure table content is not transparent */
+}
+
+table::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("<%=SchoolLogo.ImageId%>") no-repeat center;
+    background-size: contain;
+    opacity: 0.2; /* Adjust as needed */
+}
+
+        @media screen and (max-width:560px) {
+            /* #table{
+                overflow-x: auto;
+                height: 50px;
+            } */
+             /* #table{
+              display: none;
+             }
+             #table_mob{
+              display: block;
+             } */
+        }
+        #table_mob{
+              display: block;
+             }
+             #table{
+              display: none;
+             }
+    </style>
+</head>
+<body>
+  <!-- <div style="display: flex; justify-content: center;" >
+    <table border="3" id="table">
+       <tr>
+        <td colspan="7">Image</td> <td colspan="7">Image</td></tr>
+        <tr><th style="text-align: center; " colspan="14">Rao Kasal Public School</th></tr>
+        
+        <td style="text-align: center;" colspan="14">Affiliated to CBSE, Affiliation No. 3131806<br>
+        Greater Noida, Gautam Buddha Nagar, Uttar Pradesh 301310<br>
+        Phone: +91-130-3341765, Enail: rkps@gmail.com</td>
+       
+       </tr>
+       <tr>
+        <td colspan="14" style="text-align: center;">Report Card</td>
+       </tr>
+       <tr>
+        <td colspan="14" style="text-align: center;">Class: XI</td>
+       </tr>
+       <tr>
+        <td colspan="14" style="text-align: center;">Academic Session: 3018-19</td>
+       </tr>
+       <tr>
+        <td colspan="7">Student's Name __________________</td><td colspan="3"> Roll No: </td> <td colspan="3">123456</td>
+       </tr>
+       <tr>
+        <td colspan="7">Fathers's Name __________________</td>
+       </tr>
+       <tr>
+        <td colspan="7">Mothers's Name __________________</td><td colspan="3">Enrollement ID: </td> <td colspan="3">123456</td>
+       </tr>
+       <tr>
+        <td colspan="7">Date of Birth __________________</td>
+       </tr>
+       <tr>
+        <td colspan="7">Address  __________________</td><td colspan="3">House Name: </td> <td colspan="3">123456</td>
+       </tr>
+       <tr>
+        <th>SCHOLASTIC AREAS</th>
+        <th colspan="6">TERM 1 (100 Marks)</th>
+        <th colspan="6">TERM 2 (100 Marks)</th>
+       </tr>
+       <tr>
+        <td><b>Subjects</b></td>
+        <td style="width: 20px;"><b>Theory</b></td>
+        <td style="width: 100px;"><b>Total Marks</b></td>
+        <td style="width: 20px;"><b>Practicle</b></td>
+        <td style="width: 100px;"><b>Total Marks</b></td>
+        <td style="width: 120px;"><b>Marks Obtained
+            <br> 100 
+        </b></td>
+        <td style="width: 20px;"><b>Grade</b></td>
+        <td style="width: 20px;"><b>Theory</b></td>
+        <td style="width: 100px;"><b>Total Marks</b></td>
+        <td style="width: 20px;"><b>Practicle</b></td>
+        <td style="width: 100px;"><b>Total Marks</b></td>
+        <td style="width: 120px;"><b>Marks Obtained</b></td>
+        <td style="width: 20px;"><b>Grade</b></td>
+       </tr>
+      </tr>
+      <tr>
+        <td>Engilish</td>
+        <td style="text-align: center;">63</td>
+        <td style="text-align: center;">55</td>
+        <td style="text-align: center;">55</td>
+        <td style="text-align: center;">55</td>
+        <td style="text-align: center;">55</td>
+        <td style="text-align: center;">55</td>
+        <td style="text-align: center;">55</td>
+        <td style="text-align: center;">55</td>
+        <td style="text-align: center;">55</td>
+        <td style="text-align: center;">55</td>
+        <td style="text-align: center;">55</td>
+        <td style="text-align: center;">55</td>
+      </tr>
+      <tr>
+        <td colspan="14"  style="height: 20px;"></td>
+      </tr>
+      <tr></tr>
+      <tr>
+        <td colspan="5">Description</td>
+        <td colspan="2">Grade</td>
+        <td colspan="5">Description</td>
+        <td colspan="2">Grade</td>
+      </tr>
+      <tr>
+        <th colspan="5">Discipline: Term-1(on a- 3point (A-C) grading Scale </th>
+        <td colspan="2">A</td>
+        <th colspan="5">Discipline: Term-1(on a- 3point (A-C) grading Scale </th>
+        <td colspan="2">A</td>
+      </tr>
+      <tr>
+        <td colspan="6">
+            Class Teacher's Remarks:________________________
+        </td>
+        <td colspan="7" style="text-align: center;">Promoted To Class XII</td>
+      </tr>
+      <tr style="height: 30px;"></tr>
+      <tr>
+        <th colspan="8">Grading scale for scholastic Areas: Grades are awarded on a 8- points Grading Scale as follows:-</th>
+        <td colspan="5"></td>
+      </tr>
+      <tr>
+        <th colspan="4">Marks Range</th>
+        <th colspan="4">Grade</th>
+      </tr>
+      <tr>
+        <td colspan="4" style="text-align: center;">91-100</td>
+        <td colspan="4" style="text-align: center;">A 1</td>
+        <td colspan="7" style="text-align: center;">_____________________________</td>
+      </tr>
+      <tr>
+        <td colspan="4" style="text-align: center;">81-90</td>
+        <td colspan="4" style="text-align: center;">A 1</td>
+        <td colspan="7" style="text-align: center;" > Signature of Exam Coordinator </td>
+      </tr>
+      <tr>
+        <td colspan="4" style="text-align: center;">91-100</td>
+        <td colspan="4" style="text-align: center;">A 1</td>
+        <td colspan="7" style="text-align: center;">_____________________________</td>
+      </tr>
+      <tr>
+        <td colspan="4" style="text-align: center;">71-80</td>
+        <td colspan="4" style="text-align: center;">A 2</td>
+        <td colspan="7" style="text-align: center;"> Signature of Class Teacher </td>
+      </tr>
+      <tr>
+        <td colspan="4" style="text-align: center;">61-70</td>
+        <td colspan="4" style="text-align: center;">B 1</td>
+        <td colspan="7" style="text-align: center;">_____________________________</td>
+      </tr>
+      <tr>
+        <td colspan="4" style="text-align: center;">51-60</td>
+        <td colspan="4" style="text-align: center;">B 2</td>
+        <td colspan="7" style="text-align: center;"> Signature of Principle </td>
+      </tr>
+      <tr>
+        <td colspan="4" style="text-align: center;">41-50</td>
+        <td colspan="4" style="text-align: center;">C 1</td>
+        <td colspan="7" style="text-align: center;">_____________________________</td>
+      </tr>
+      <tr>
+        <td colspan="4" style="text-align: center;">33-40</td>
+        <td colspan="4" style="text-align: center;">C 2</td>
+        <td colspan="7" style="text-align: center;"> Signature of Parents </td>
+      </tr>
+      <tr>
+        <td colspan="4" style="text-align: center;">32 and Below</td>
+        <td colspan="4" style="text-align: center;">E (Needs improvement)</td>
+      </tr>
+      <tr>
+        <td colspan="4"> Issue Date : </td>
+        <td colspan="4" style="text-align: center;"><button onclick="window.print()">Print Result</button></td>
+      </tr>
+    </table>
+    </div> --> 
+    <div style="display: flex; justify-content: center;">
+      <table border="3" id="table_mob" >
+          <tr><th style="text-align: center;font-family: Georgia, 'Times New Roman', Times, serif; font-size: 25px; text-transform: uppercase; " colspan="13"><%=schoolData.schoolName%></th></tr>
+          
+          <td style="text-align: center; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" colspan="13">Affiliated to <%=schoolData.AffiliationBoard%>, Affiliation No. <%=schoolData.AffiliationNo%><br>
+            <%=schoolData.Address%><br>
+          Phone: +91-<%=schoolData.Phone%>, Email:<%=schoolData.email%></td>
+         
+         </tr>
+         <tr>
+          <td colspan="13" style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 20px">Report Card</td>
+         </tr>
+         <tr>
+          <td colspan="13" style="text-align: center;">Class: <%=user.Class_name%></td>
+         </tr>
+         <tr>
+          <td colspan="13" style="text-align: center;">Academic Session: <%=schoolData. Session%></td>
+         </tr>
+         <tr>
+          <td colspan="6"><b>Student's Name :</b> <i><u><%=user.studentName%></u></i></td><td colspan="4"> <b>Roll No:</b> </td> <td colspan="2"><%=user.Roll%></td> <td  rowspan="5" style="background-image: url(<%=user.Image%>); background-size: contain; background-repeat: no-repeat;"></td>
+         </tr>
+         <tr>
+          <td colspan="6"><b>Fathers's Name: </b><i><u><%=user.fatherName%></u></i></td>
+         </tr>
+         <tr>
+          <td colspan="6"><b>Mothers's Name:</b> <i><u><%=user.motherName%></u></i> </td><td colspan="4"><b>Enrollement No: </b> </td> <td colspan="2"><i><u>
+            <%=user.enrollement%>
+          </u></i></td>
+         </tr>
+         <tr>
+          <td colspan="6"><b>Date of Birth: </b><i><u><%=user.DateofBirth%></u></i></td>
+         </tr>
+         <tr>
+          <td colspan="6"><b>Address:</b> <i><u><%=user. Address%></u></i></td><td colspan="4"><b>House Name:</b> </td> <td colspan="2"><i><u><%=user.HouseName%></u></i></td>
+         </tr>
+         <tr>
+          <th style="width: 20px;">SCHOLASTIC AREAS</th>
+          <th colspan="6">TERM 1 (100 Marks)</th>
+          <th colspan="6">TERM 2 (100 Marks)</th>
+          <!-- <th colspan="6">TERM 2 (100 Marks)</th> -->
+         </tr>
+         <tr>
+          <td><b>Subjects</b></td>
+          <td style="width: 15px; font-size: 13px;"><b>Theory</b></td>
+          <td style="width: 5px; font-size: 13px;"><b>Total</b></td>
+          <td style="width: 10px; font-size: 13px;"><b>Practicle</b></td>
+          <td style="width:5px; font-size: 13px;"><b>Total</b></td>
+          <td style="font-size: 13px; width:20px;"><b>Marks
+          </b></td>
+          <td style="width: 10px; font-size: 13px;"><b>Grade</b></td>
+          <td style="width: 10px; font-size: 13px;"><b>Theory</b></td>
+          <td style="font-size: 13px;"><b>Total</b></td>
+          <td style="font-size: 13px;"><b>Practicle</b></td>
+          <td style="font-size: 13px;"><b>Total</b></td>
+          <td style="font-size: 13px; width:20px;"><b>Marks</b></td>
+          <td style="font-size: 13px;"><b>Grade</b></td>
+          <!-- <td style="width: 20px;"><b>Theory</b></td>
+          <td style="width: 100px;"><b>Total Marks</b></td>
+          <td style="width: 20px;"><b>Practicle</b></td>
+          <td style="width: 100px;"><b>Total Marks</b></td>
+          <td style="width: 120px;"><b>Marks Obtained</b></td>
+          <td style="width: 20px;"><b>Grade</b></td> -->
+         </tr>
+        </tr>
+        <%marksheet.forEach(function(marks){%>
+        <tr>
+          <td style="font-size: 13px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight: 400;"><%=marks.Subject%></td>
+          <td style="text-align: center;"><%=marks.Theory_term1%></td>
+          <td style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><%=marks.MaxTheory%></td>
+          <td style="text-align: center;"><%=marks.Practicle_term1%></td>
+          <td style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><%=marks.MaxPracticle%></td>
+          <td style="text-align: center;"><%=marks.MarksObtained_term1%></td>
+          <td style="text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif;"><%=marks.Grade%></td>
+          <!-- <td colspan="2"><%=marks.Subject%></td> -->
+          <td style="text-align: center;"><%=marks.Theory_term2%></td>
+          <td style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><%=marks.MaxTheory%></td>
+          <td style="text-align: center;"><%=marks.Practicle_term2%></td>
+          <td style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><%=marks.MaxPracticle%></td>
+          <td style="text-align: center;"><%=marks.MarksObtained_term2%></td>
+          <td style="text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif;"><%=marks.Grade2%></td>
+          <!-- <td style="text-align: center;">55</td>
+          <td style="text-align: center;">55</td>
+          <td style="text-align: center;">55</td>
+          <td style="text-align: center;">55</td>
+          <td style="text-align: center;">55</td>
+          <td style="text-align: center;">55</td> -->
+        </tr>
+        <% })%>
+        <tr>
+          <td colspan="13"><a href="/blueprint/ReportCard"><button style="padding: 2px; border-color: green; border-radius: 20px; border:5px; background-color: blue; color: aqua; text-align:center; cursor: pointer;" id="insert">Insert More</button></a></td></tr>
+        <tr>
+         <%totalMarks.forEach(result=>{%>
+        <td colspan="1">Total Marks: <%=result.totalSum%></td>
+        <td colspan="4">Total Marks Obt: <%=result.totalSum_obtained_term1%></td>
+        <td colspan="2">Percentage: <%=result.percentage_term1%></td>
+        <td colspan="2">Total Marks: <%=result.totalSum%></td>
+        <td colspan="3">Total Marks Obt: <%=result.totalSum_obtained_term2%></td>
+        <td colspan="2">Percentage: <%=result.percentage_term2%></td><%});%>
+        
+        </tr>
+        <!-- <tr>
+          <th colspan="2">SCHOLASTIC AREAS</th>
+          <th colspan="6">TERM 2 (100 Marks)</th>
+        </tr>
+        <tr>
+          <td colspan="2"><b>Subjects</b></td>
+          <td style="width: 20px;"><b>Theory</b></td>
+          <td style="width: 100px;"><b>Total Marks</b></td>
+          <td style="width: 20px;"><b>Practicle</b></td>
+          <td style="width: 100px;"><b>Total Marks</b></td>
+          <td style="width: 120px;"><b>Marks Obtained <pre>      100</pre></b></td>
+          <td style="width: 20px;"><b>Grade</b></td>
+        </tr>
+        <%marksheet.forEach(function(marks){%>
+          <tr>
+            <td colspan="2"><%=marks.Subject%></td>
+            <td style="text-align: center;"><%=marks.Theory_term2%></td>
+            <td style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><%=marks.MaxTheory%></td>
+            <td style="text-align: center;"><%=marks.Practicle_term2%></td>
+            <td style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><%=marks.MaxPracticle%></td>
+            <td style="text-align: center;"><%=marks.MarksObtained_term2%></td>
+            <td style="text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif;"><%=marks.Grade2%></td>
+            <!-- <td style="text-align: center;">55</td>
+            <td style="text-align: center;">55</td>
+            <td style="text-align: center;">55</td>
+            <td style="text-align: center;">55</td>
+            <td style="text-align: center;">55</td>
+            <td style="text-align: center;">55</td> 
+          </tr>
+          <% })%> -->
+          <!-- <tr>
+            <%totalMarks.forEach(result=>{%>
+           <td colspan="3">Tota Marks: <%=result.totalSum%></td>
+           <td colspan="3">Tota Marks Obtained: <%=result.totalSum_obtained_term2%></td>
+           <td colspan="2">Percentage: <%=result.percentage_term2%></td><%});%>
+           </tr> -->
+          <!-- <td style="text-align: center;">55</td>
+          <td style="text-align: center;">55</td>
+          <td style="text-align: center;">55</td>
+          <td style="text-align: center;">55</td>
+          <td style="text-align: center;">55</td>
+          <td style="text-align: center;">55</td> -->
+          <tr>
+            <td colspan="13" style="height: 20px;"></td>
+          </tr>
+          <tr>
+            <%totalMarks.forEach(result=>{%>
+           <td colspan="4"><strong style="font-family: 'Courier New', Courier, monospace;"> Final Tota Marks : </strong><%=result.totalFinalMax%></td>
+           <td colspan="6"><strong style="font-family: 'Courier New', Courier, monospace;">Final Marks Obtained: </strong><%=result.totalFinalObt%></td>
+           <td colspan="3"><strong style="font-family: 'Courier New', Courier, monospace;">Overall Percentage: </strong> <%=result.percentage_term_final%></td><%});%>
+           </tr>
+           <tr>
+            <td colspan="13" style="height: 20px;"></td>
+          </tr>
+         <tr>
+          <td colspan="7" style="text-align: center;">Description</td>
+          <td colspan="1">Grade</td>
+          <td colspan="4" style="text-align: center;">Description</td>
+          <td colspan="1">Grade</td>
+        </tr>
+         <tr>
+          <th colspan="7" style="padding: 0px; font-size: 15px;">Discipline: Term-1(on a- 3point (A-C) grading Scale )</th>
+          <td colspan="1" style="font-family: Verdana, Geneva, Tahoma, sans-serif; text-align: center;"><%=discipline.Dis_term1%></td>
+          <th colspan="4">Discipline: Term-2(on a- 3point (A-C) grading Scale )</th>
+          <td colspan="2" style="font-family: Verdana, Geneva, Tahoma, sans-serif; text-align: center;"><%=discipline.Dis_term2%></td>
+        </tr>
+        <tr>
+          <td colspan="10">
+              <b>Class Teacher's Remarks:</b> <u style="font-style: oblique;"><%=discipline.Teacher_Remarks%></u>
+          </td>
+          <td colspan="3" style="text-align: center;">Promoted To Class:<strong> <%=discipline.Promoted%></strong></td>
+        </tr>
+        <tr style="height: 20px;"></tr>
+        <tr>
+          <th colspan="13">Grading scale for scholastic Areas: Grades are awarded on a 8- points Grading Scale as follows:-</th>
+        </tr>
+        <tr>
+          <th colspan="5">Marks Range</th>
+          <th colspan="3">Grade</th>
+        </tr>
+        <tr>
+          <td colspan="5" style="text-align: center;">91-100</td>
+          <td colspan="3" style="text-align: center;">A+</td>
+          <td colspan="5" style="text-align: center;">_____________________________</td>
+        </tr>
+        <tr>
+          <td colspan="5" style="text-align: center;">81-90</td>
+          <td colspan="3" style="text-align: center;">A</td>
+          <td colspan="5" style="text-align: center;" > Signature of Exam Coordinator </td>
+        </tr>
+        <tr>
+          <td colspan="5" style="text-align: center;">91-100</td>
+          <td colspan="3" style="text-align: center;">B+</td>
+          <td colspan="5" style="text-align: center;">_____________________________</td>
+        </tr>
+        <tr>
+          <td colspan="5" style="text-align: center;">71-80</td>
+          <td colspan="3" style="text-align: center;">B+</td>
+          <td colspan="5" style="text-align: center;"> Signature of Class Teacher </td>
+        </tr>
+        <tr>
+          <td colspan="5" style="text-align: center;">61-70</td>
+          <td colspan="3" style="text-align: center;">B</td>
+          <td colspan="5" style="text-align: center;">_____________________________</td>
+        </tr>
+        <tr>
+          <td colspan="5" style="text-align: center;">51-60</td>
+          <td colspan="3" style="text-align: center;">C+</td>
+          <td colspan="5" style="text-align: center;"> Signature of Principle </td>
+        </tr>
+        <tr>
+          <td colspan="5" style="text-align: center;">41-50</td>
+          <td colspan="3" style="text-align: center;">C</td>
+          <td colspan="5" style="text-align: center;">_____________________________</td>
+        </tr>
+        <tr>
+          <td colspan="5" style="text-align: center;">33-40</td>
+          <td colspan="3" style="text-align: center;">D</td>
+          <td colspan="5" style="text-align: center;"> Signature of Parents </td>
+        </tr>
+        <tr>
+          <td colspan="8" style="text-align: center;">32 and Below</td>
+          <td colspan="5" style="text-align: center;">E (Needs improvement)</td>
+        </tr>
+        <tr>
+          <td colspan="13" style="text-align: center;"> Issue Date : <i id="issue"></i> </td>
+        </tr> 
+      </table>
+      </div>
+      <button onclick="window.print()" style="cursor:pointer;">Print Result</button>
+      <button  style="cursor:pointer; position: absolute; margin-left: 30px;" id="pr_res">Finalize Marksheet</button>
+      <script>
+        const now= new Date();
+        const year= now.getFullYear();
+        const month= now.getMonth()+1;
+        const day= now.getDate();
+        const Date_new= `${day}- ${month}- ${year}`;
+        document.getElementById("issue").innerText= Date_new;
+        function hide(){
+          document.getElementById("insert").style.display="none";
+          document.getElementById("pr_res").style.display="none";
+        }
+        let btn= document.getElementById("pr_res");
+        btn.addEventListener("click",Event=>{
+          hide();
+        })
+      </script>
+</body>
+</html>

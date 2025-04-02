@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+       body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #6133ff, #33a1ff);
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+     .input {
+            text-align: center;
+            margin: 10px 0;
+            height: 40px;
+            width: 100%;
+            max-width: 300px;
+            border-radius: 25px;
+            border: 2px solid #ccc;
+            padding: 0 15px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .input:focus {
+            border-color: #33a1ff;
+        }
+
+        #main {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+            margin: 5% auto;
+            text-align: center;
+        }
+
+        #login {
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+           
+        }
+        #register{
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        #menu{
+            display: none;
+        }
+        .google-login-button {
+            display: inline-flex;
+            align-items: center;
+            background-color: #ffffff;
+            color: #757575;
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, box-shadow 0.3s;
+            margin: 10px 0;
+        }
+
+        .google-login-button:hover {
+            background-color: #f8f8f8;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .google-logo {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .button-text {
+            font-weight: 500;
+        }
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        #navbar, #navbar2 {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #navbar li, #navbar2 li {
+            margin: 0 10px;
+        }
+
+        #navbar a, #navbar2 a {
+            color: #fff;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        #navbar a:hover, #navbar2 a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .sign {
+            background: #33a1ff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 16px;
+        }
+
+        .sign:hover {
+            background: #6133ff;
+        }
+        @media (max-width: 768px) {
+            #navbar {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            #main {
+                width: 100%;
+                margin-top: 100px;
+            }
+            #login {
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+           height: 50vh;
+        }
+            #menu {
+                    display: block;
+                    background-color: #33a1ff;
+                    color: #fff;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 25px;
+                    font-size: 16px;
+                    margin: 10px auto;
+                    cursor: pointer;
+            }
+            #hd1_mob {
+            display: block;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            margin-top: 60px;
+        }
+        #hd1_lap{
+            display: none;
+        }
+        }
+
+        @media (max-width: 480px) {
+            #main {
+                width: 95%;
+                margin-top: 100px;
+            }
+            #navbar {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #navbar a {
+                display: block;
+                padding: 10px;
+            }
+
+            .sign {
+                width: 100%;
+                text-align: center;
+            }
+
+            .input {
+                width: 90%;
+            }
+            #menu {
+                    display: block;
+                    background-color: #33a1ff;
+                    color: #fff;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 25px;
+                    font-size: 16px;
+                    margin: 10px auto;
+                    cursor: pointer;
+            }
+            #hd1_mob {
+            display: block;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            margin-top: 60px;
+        }
+        #hd1_lap{
+            display: none;
+        }
+        }
+</style>
+<body>
+    <div id="lap">
+        <button id="menu" onclick="show()">Menu</button>
+        <header id="hd1_lap">
+            <ul id="navbar">
+                <li><img src="https://i.pinimg.com/736x/3f/a7/a3/3fa7a3f3f4eff2b730de3c584569b694.jpg" alt="logo" id="dim_img"
+                    height="40px" style="border-radius: 30px;"></li>
+                <li><a href="/">Home</a></li>
+                <li><a>About</a></li>
+                <li><a>Contact</a></li>
+                <li><a>Resources</a></li>
+                <li><a href="/home/login/page"><button class="sign">Sign in</button></a></li>
+                <li><a href="/view/marksheet/student"><button class="sign">Dashboard</button></a></li>
+            </ul>
+        </header>
+        <header id="hd1_mob">
+            <ul id="navbar">
+                <li><img src="https://i.pinimg.com/736x/3f/a7/a3/3fa7a3f3f4eff2b730de3c584569b694.jpg" alt="logo" id="dim_img"></li>
+                <li><a href="/">Home</a></li>
+                <li><a>About</a></li>
+                <li><a>Contact</a></li>
+                <li><a href="/home/login/page"><button class="sign">Sign in</button></a></li>
+                <li><a href="/view/marksheet/student"><button class="sign">Dashboard</button></a></li>
+            </ul>
+        </header>
+      <div id="main">
+        <form action="/login"  method="post">
+            <table id="login">
+                <tr>
+                    <th colspan="2">Login Here
+                        <hr>
+                    </th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="email" placeholder="Email" name="email" class="input" onchange="validateLoginForm(this.form)">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="password" placeholder="Password" name="pass" class="input" onchange="validateLoginForm(this.form)">
+                    </td>
+                </tr>
+               
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" class="input" style="background: #33a1ff; color: #fff;">Click To Register</button>
+                    </td>
+                </tr>
+            </form>
+                <tr>
+                    <td colspan="2">
+                        <a href="/auth/google" class="google-login-button">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google Logo" class="google-logo">
+                            <span class="button-text">Login with Google</span>
+                        </a>
+                    </td>
+                </tr>
+               
+                <tr>
+                    <td>Don't have an account?</td>
+                    <td>
+                        <button onclick="Signin();" type="button">Register Here</button>
+                    </td>
+                </tr>
+            </table>
+       
+        <form  action="/register" method="post">
+            <table id="register">
+                <tr>
+                    <th colspan="2">Register Here</th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="text" placeholder="Enter Username" name="user_name" class="input" onchange="validateForm(this.form)">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="email" placeholder="Email" name="email" class="input" onchange="validateForm(this.form)">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="password" placeholder="Password" name="pass" class="input" onchange="validateForm(this.form)">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="password" placeholder="Confirm Password" name="con_pass" class="input" onchange="validateForm(this.form)">
+                    </td>
+                </tr>
+              
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" class="input" style="background: #33a1ff; color: #fff;">Click To Register</button>
+                    </td>
+                </tr>
+            </form>
+            <tr>
+                <td>If Registered</td>
+                <td>
+                    <button onclick="Login()" type="button">Login Here</button>
+                </td>
+            </tr>
+            </table>
+       
+    </div> 
+</body>
+<script>
+    document.getElementById("register").style.display='none';
+    function Signin(){
+        document.getElementById('register').style.display='inline';
+        document.getElementById('login').style.display='none';
+    }
+    function Login(){
+        document.getElementById('register').style.display='none';
+        document.getElementById('login').style.display='inline';
+    }
+    let btn= document.querySelector('#menu');
+    let lrn=document.querySelector('#hd1_mob');
+    lrn.style.display='none';
+    let display=0;
+    function show(){
+    if(display==0){
+        lrn.style.display='block';
+        display=1;
+        document.querySelector('#menu').innerHTML="X";
+    }
+    else{
+        lrn.style.display='none';
+        display=0;
+        document.querySelector('#menu').innerHTML='Menu';
+    }  
+    }
+     // Function for validation:
+     function validateForm(form) {
+    let isValid = true;
+
+    form.querySelectorAll(".input").forEach(input => {
+        let value = input.value.trim();
+        let name = input.name;
+
+        // Email validation
+        if (name === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+            alert("Please enter a valid email address.");
+            isValid = false;
+        }
+
+        // Password length validation
+        if ((name === "pass" || name === "con_pass") && value.length < 6) {
+            alert("Password must be at least 6 characters long.");
+            isValid = false;
+        }
+
+        // Confirm password check (only in registration)
+        if (name === "con_pass") {
+            let password = form.querySelector("input[name='pass']").value.trim();
+            if (value !== password) {
+                alert("Passwords do not match.");
+                isValid = false;
+            }
+        }
+
+        // Security Key validation (only in login)
+        if (name === "sec_key" && value === "") {
+            alert("Please enter the security key.");
+            isValid = false;
+        }
+
+        // Username validation (only in registration)
+        if (name === "user_name" && value === "") {
+            alert("Please enter a username.");
+            isValid = false;
+        }
+    })};
+     // Function for Login validation:
+     function validateLoginForm(form) {
+    let isValid = true;
+
+    form.querySelectorAll(".input").forEach(input => {
+        let value = input.value.trim();
+        let name = input.name;
+
+        // Email validation
+        if (name === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+            alert("Please enter a valid email address.");
+            isValid = false;
+        }
+
+        // Password length validation
+        if ((name === "pass" || name === "con_pass") && value.length < 6) {
+            alert("Password must be at least 6 characters long.");
+            isValid = false;
+        }
+
+        // Security Key validation (only in login)
+        if (name === "sec_key" && value === "") {
+            alert("Please enter the security key.");
+            isValid = false;
+        }
+
+    })};
+</script>
+</html>
