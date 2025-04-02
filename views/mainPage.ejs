@@ -471,6 +471,13 @@
             background-color: rgba(255, 255, 255, 0.2);
         }
 
+        #dim_img_lap{
+            height:40px;
+         border-radius: 30px;
+        }
+        #dim_img{
+            display: none;
+        }
         .sign {
             background: #33a1ff;
             color: #fff;
@@ -675,6 +682,15 @@
         #hd1_lap{
             display: none;
         }
+        #dim_img{
+                display: block;
+                height: 40px;
+                width: 40px;
+                border-radius: 20px;
+            }
+            #dim_img_lap{
+                display: none;
+            }
         }
 
         @media (max-width: 480px) {
@@ -722,6 +738,15 @@
                     margin: 10px auto;
                     cursor: pointer;
             }
+            #dim_img{
+                display: block;
+                height: 40px;
+                width: 40px;
+                border-radius: 20px;
+            }
+            #dim_img_lap{
+                display: none;
+            }
         }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -735,7 +760,7 @@
         <button id="menu" onclick="show()">Menu</button>
         <header id="hd1_lap">
             <ul id="navbar">
-                <li><img src="https://i.pinimg.com/736x/3f/a7/a3/3fa7a3f3f4eff2b730de3c584569b694.jpg" alt="logo" id="dim_img" height="40px" style="border-radius: 30px;"></li>
+                <li><img src="https://i.pinimg.com/736x/3f/a7/a3/3fa7a3f3f4eff2b730de3c584569b694.jpg" alt="logo" id="dim_img_lap"></li>
                 <li><a href="/">Home</a></li>
                 <li><a href="#mission">About</a></li>
                 <li><a href="#ft">Contact</a></li>

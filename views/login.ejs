@@ -55,6 +55,7 @@
             max-width: 400px;
             margin: 5% auto;
             text-align: center;
+            height: 50vh;
         }
 
         #login {
@@ -148,6 +149,13 @@
         .sign:hover {
             background: #6133ff;
         }
+        #dim_img_lap{
+            height:40px;
+         border-radius: 30px;
+        }
+        #dim_img{
+            display: none;
+        }
         @media (max-width: 768px) {
             #navbar {
                 flex-direction: column;
@@ -164,7 +172,7 @@
             padding: 20px;
             box-sizing: border-box;
            height: 50vh;
-        }
+            }
             #menu {
                     display: block;
                     background-color: #33a1ff;
@@ -189,6 +197,15 @@
         #hd1_lap{
             display: none;
         }
+        #dim_img{
+                display: block;
+                height: 40px;
+                width: 40px;
+                border-radius: 20px;
+            }
+            #dim_img_lap{
+                display: none;
+            }
         }
 
         @media (max-width: 480px) {
@@ -238,6 +255,15 @@
         #hd1_lap{
             display: none;
         }
+        #dim_img{
+                display: block;
+                height: 40px;
+                width: 40px;
+                border-radius: 20px;
+            }
+            #dim_img_lap{
+                display: none;
+            }
         }
 </style>
 <body>

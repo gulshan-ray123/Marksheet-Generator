@@ -59,6 +59,7 @@
             max-width: 400px;
             margin: 5% auto;
             text-align: center;
+            height: 50vh;
         }
 
         #login {
@@ -149,6 +150,15 @@
         .sign:hover {
             background: #6133ff;
         }
+
+        #dim_img_lap{
+            height:40px;
+         border-radius: 30px;
+        }
+        #dim_img{
+            display: none;
+        }
+
         @media (max-width: 768px) {
             #navbar {
                 flex-direction: column;
@@ -183,25 +193,19 @@
         #hd1_lap{
             display: none;
         }
+        #dim_img{
+                display: block;
+                height: 40px;
+                width: 40px;
+                border-radius: 20px;
+            }
+            #dim_img_lap{
+                display: none;
+            }
         }
 
         @media (max-width: 480px) {
-            #main {
-                width: 95%;
-                margin-top: 200px;
-                height: 30vh;
-            }
-            #menu {
-                    display: none;
-                    background-color: #33a1ff;
-                    color: #fff;
-                    border: none;
-                    padding: 10px 20px;
-                    border-radius: 25px;
-                    font-size: 16px;
-                    margin: 10px auto;
-                    cursor: pointer;
-            }
+           
             #hd1_mob {
             display: block;
             background: rgba(0, 0, 0, 0.7);
@@ -215,23 +219,44 @@
         #hd1_lap{
             display: none;
         }
-            #navbar {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            #navbar a {
-                display: block;
-                padding: 10px;
-            }
-
-            .sign {
+            #main {
                 width: 100%;
-                text-align: center;
+                margin: 10% auto;
+            }
+            #hd1{
+             /* display: none; */
+             margin-top: 50px;
+            }
+            #dtl h1 {
+                font-size: 1.8rem;
             }
 
-            .input {
-                width: 90%;
+            #dtl h3 {
+                font-size: 1rem;
+            }
+
+            #dtl p {
+                font-size: 0.9rem;
+            }
+            #menu {
+                    display: block;
+                    background-color: #33a1ff;
+                    color: #fff;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 25px;
+                    font-size: 16px;
+                    margin: 10px auto;
+                    cursor: pointer;
+            }
+            #dim_img{
+                display: block;
+                height: 40px;
+                width: 40px;
+                border-radius: 20px;
+            }
+            #dim_img_lap{
+                display: none;
             }
         }
 </style>
@@ -251,7 +276,7 @@
             <button id="menu" onclick="show()">Menu</button>
             <header id="hd1_lap">
                 <ul id="navbar">
-                    <li><img src="https://i.pinimg.com/736x/3f/a7/a3/3fa7a3f3f4eff2b730de3c584569b694.jpg" alt="logo" id="dim_img"
+                    <li><img src="https://i.pinimg.com/736x/3f/a7/a3/3fa7a3f3f4eff2b730de3c584569b694.jpg" alt="logo" id="dim_img_lap"
                         height="40px" style="border-radius: 30px;"></li>
                     <li><a href="/">Home</a></li>
                     <li><a>Contact</a></li>
@@ -262,7 +287,7 @@
             </header>
             <header id="hd1_mob">
                 <ul id="navbar">
-                    <li><img src="dim logo.jpg" alt="logo" id="dim_img"></li>
+                    <li><img src="https://i.pinimg.com/736x/3f/a7/a3/3fa7a3f3f4eff2b730de3c584569b694.jpg" alt="logo" id="dim_img"></li>
                     <li><a href="/">Home</a></li>
                     <li><a>About</a></li>
                     <li><a>Contact</a></li>
