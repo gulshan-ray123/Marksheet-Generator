@@ -28,17 +28,17 @@ const jwtSecretKey= process.env.SECRET_KEY;
 const { v4: uuidv4 } = require('uuid');
 const { faErlang } = require('@fortawesome/free-brands-svg-icons');
 uuidv4();
-// const storage = multer.memoryStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, './uploads')
-//   },
-//   filename: function (req, file, cb) {
-//     console.log(file);
-//     const random = uuidv4();
-//     cb(null, random+""+ file.originalname)
-//   }
-// })
-const storage = multer.memoryStorage();
+const storage = multer.memoryStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads')
+  },
+  filename: function (req, file, cb) {
+    console.log(file);
+    const random = uuidv4();
+    cb(null, random+""+ file.originalname)
+  }
+})
+// const storage = multer.memoryStorage();
 const upload = multer({ storage: storage })
 
 
@@ -287,22 +287,22 @@ app.get('/view/marksheet/student',requireAuth,(req,res)=>{
 // Route for Student Registeration.
 app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
   let{enrollement,stu_name,fth_name,mth_name,dob,add,class_name,roll,hos_name}= req.body;
-  // console.log(req.file.path);
-  // const uploadResult = await cloudinary.uploader
-  // .upload(
-  //    req.file.path
-  // )
-  // .catch((error) => {
-  //     console.log(error);
-  // });
-  // console.log(uploadResult);
-  // //Delete file 
-  // fs.unlink(req.file.path,
-  //   (err)=> {
-  //       if (err) console.log(err);
-  //       else {
-  //           console.log("\nDeleted file");
-  //       }
+  console.log(req.file.path);
+  const uploadResult = await cloudinary.uploader
+  .upload(
+     req.file.path
+  )
+  .catch((error) => {
+      console.log(error);
+  });
+  console.log(uploadResult);
+  //Delete file 
+  fs.unlink(req.file.path,
+    (err)=> {
+        if (err) console.log(err);
+        else {
+            console.log("\nDeleted file");
+        }
   
     });
     const student= await studentModel.create({
