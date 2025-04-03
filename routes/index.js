@@ -305,20 +305,14 @@ app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
   //       }
   
   //   });
-    try {
-        if (!req.file) {
-            return res.status(400).json({ error: 'No file uploaded' });
-        }
 
         // Upload file to Cloudinary
         const result = await cloudinary.uploader.upload_stream({ folder: 'uploads' }, (error, result) => {
             if (error) return res.status(500).json({ error: error.message });
             res.json({ success: true, url: result.secure_url });
         }).end(req.file.buffer); // Send the buffer to Cloudinary
-    } catch (error) {
-        console.error('Upload Error:', error);
-        res.status(500).json({ error: 'File upload failed' });
-    }
+    } 
+  console.log(result);
     const student= await studentModel.create({
       enrollement:enrollement,
       studentName:stu_name,
