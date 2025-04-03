@@ -28,17 +28,17 @@ const jwtSecretKey= process.env.SECRET_KEY;
 const { v4: uuidv4 } = require('uuid');
 const { faErlang } = require('@fortawesome/free-brands-svg-icons');
 uuidv4();
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './uploads')
-  },
-  filename: function (req, file, cb) {
-    console.log(file);
-    const random = uuidv4();
-    cb(null, random+""+ file.originalname)
-  }
-})
-// const storage = multer.memoryStorage();
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, './uploads')
+//   },
+//   filename: function (req, file, cb) {
+//     console.log(file);
+//     const random = uuidv4();
+//     cb(null, random+""+ file.originalname)
+//   }
+// })
+const storage = multer.memoryStorage();
 const upload = multer({ storage: storage })
 
 
@@ -287,24 +287,38 @@ app.get('/view/marksheet/student',requireAuth,(req,res)=>{
 // Route for Student Registeration.
 app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
   let{enrollement,stu_name,fth_name,mth_name,dob,add,class_name,roll,hos_name}= req.body;
-  console.log(req.file.path);
-  const uploadResult = await cloudinary.uploader
-  .upload(
-     req.file.path
-  )
-  .catch((error) => {
-      console.log(error);
-  });
-  console.log(uploadResult);
-  //Delete file 
-  fs.unlink(req.file.path,
-    (err)=> {
-        if (err) console.log(err);
-        else {
-            console.log("\nDeleted file");
-        }
+  console.log(req.file);
+  // const uploadResult = await cloudinary.uploader
+  // .upload(
+  //    req.file.path
+  // )
+  // .catch((error) => {
+  //     console.log(error);
+  // });
+  // console.log(uploadResult);
+  // //Delete file 
+  // fs.unlink(req.file.path,
+  //   (err)=> {
+  //       if (err) console.log(err);
+  //       else {
+  //           console.log("\nDeleted file");
+  //       }
   
-    });
+  //   });
+    try {
+        if (!req.file) {
+            return res.status(400).json({ error: 'No file uploaded' });
+        }
+
+        // Upload file to Cloudinary
+        const result = await cloudinary.uploader.upload_stream({ folder: 'uploads' }, (error, result) => {
+            if (error) return res.status(500).json({ error: error.message });
+            res.json({ success: true, url: result.secure_url });
+        }).end(req.file.buffer); // Send the buffer to Cloudinary
+    } catch (error) {
+        console.error('Upload Error:', error);
+        res.status(500).json({ error: 'File upload failed' });
+    }
     const student= await studentModel.create({
       enrollement:enrollement,
       studentName:stu_name,
@@ -315,7 +329,7 @@ app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
       Roll:roll,
       Class_name:class_name,
       HouseName:hos_name,
-      Image:uploadResult.secure_url,
+      Image:result.secure_url,
       // Subject:{
       //   English:{
       //     theory: req.body.English,
