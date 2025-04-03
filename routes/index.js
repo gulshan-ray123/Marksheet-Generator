@@ -28,7 +28,7 @@ const jwtSecretKey= process.env.SECRET_KEY;
 const { v4: uuidv4 } = require('uuid');
 const { faErlang } = require('@fortawesome/free-brands-svg-icons');
 uuidv4();
-const storage = multer.memoryStorage({
+const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, './uploads')
   },
