@@ -551,7 +551,7 @@ app.post('/logo/registration',upload.single('org_logo'),async(req,res)=>{
   //       else {
   //           console.log("\nDeleted file");
   //       }
-         constuploadSchoolLogo = await new Promise((resolve, reject) => {
+         const uploadSchoolLogo = await new Promise((resolve, reject) => {
             const stream = cloudinary.uploader.upload_stream(
                 { folder: 'uploads' },
                 (error, result) => {
