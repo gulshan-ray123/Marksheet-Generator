@@ -8,6 +8,7 @@ const marksModel= require('../model/Marksheet');
 const disciplineModel=require('../model/Disciplinemarks');
 const bcrypt=require('bcrypt');
 const fs = require('fs');
+const streamifier = require('streamifier');
 const jwt = require('jsonwebtoken');
 const studentModel= require('../model/stuReg');
 const regModel=require('../model/Register');
@@ -28,16 +29,16 @@ const jwtSecretKey= process.env.SECRET_KEY;
 const { v4: uuidv4 } = require('uuid');
 const { faErlang } = require('@fortawesome/free-brands-svg-icons');
 uuidv4();
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './uploads')
-  },
-  filename: function (req, file, cb) {
-    console.log(file);
-    const random = uuidv4();
-    cb(null, random+""+ file.originalname)
-  }
-})
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, './uploads')
+//   },
+//   filename: function (req, file, cb) {
+//     console.log(file);
+//     const random = uuidv4();
+//     cb(null, random+""+ file.originalname)
+//   }
+// })
 const upload = multer({ storage: storage })
 /* GET home page. */
 app.get('/', function(req, res) {
@@ -285,22 +286,33 @@ app.get('/view/marksheet/student',requireAuth,(req,res)=>{
 app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
   let{enrollement,stu_name,fth_name,mth_name,dob,add,class_name,roll,hos_name}= req.body;
   console.log(req.file.path);
-  const uploadResult = await cloudinary.uploader
-  .upload(
-     req.file.path
-  )
-  .catch((error) => {
-      console.log(error);
-  });
-  console.log(uploadResult);
-  //Delete file 
-  fs.unlink(req.file.path,
-    (err)=> {
-        if (err) console.log(err);
-        else {
-            console.log("\nDeleted file");
-        }
-    });
+  // const uploadResult = await cloudinary.uploader
+  // .upload(
+  //    req.file.path
+  // )
+  // .catch((error) => {
+  //     console.log(error);
+  // });
+  // console.log(uploadResult);
+  // //Delete file 
+  // fs.unlink(req.file.path,
+  //   (err)=> {
+  //       if (err) console.log(err);
+  //       else {
+  //           console.log("\nDeleted file");
+  //       }
+  //   });
+    const result = cloudinary.uploader.upload_stream(
+         { folder: 'uploads' },
+                 (error, result) => {
+                                  if (error) {
+              console.error("Cloudinary Upload Error:", error);
+              return res.status(500).json({ error: "Failed to upload file" });
+              }
+
+            console.log("File uploaded successfully:", result.secure_url);
+          }
+    );
     const student= await studentModel.create({
       enrollement:enrollement,
       studentName:stu_name,
@@ -311,7 +323,7 @@ app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
       Roll:roll,
       Class_name:class_name,
       HouseName:hos_name,
-      Image:uploadResult.secure_url,
+      Image:result.secure_url,
       // Subject:{
       //   English:{
       //     theory: req.body.English,
@@ -319,6 +331,7 @@ app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
       //   }
       // }
     })
+    streamifier.createReadStream(req.file.buffer).pipe(stream); // Pipe buffer to Cloudinary
     console.log("Student Registered Successfully!");
     console.log(student);
   res.redirect('/success');
