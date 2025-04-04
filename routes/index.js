@@ -135,7 +135,7 @@ app.post('/blueprint/Marksheet', async(req,res)=>{
   // const marksheet = await marksModel.find({Enrollement: req.body.eid});
   // creating marks
   let{max_thry, max_prac, opt, theory, prac, total_marks,grade,eid, 
-    theory_term2,prac_term2,total_marks2,grade2,dis_grade,dis_grade2}=req.body;
+    theory_term2,prac_term2,total_marks2,grade2}=req.body;
   const MarksInfo=  await marksModel.create({
     Enrollement:eid,
     MaxTheory:max_thry,
@@ -145,12 +145,10 @@ app.post('/blueprint/Marksheet', async(req,res)=>{
     Practicle_term1: prac,
     MarksObtained_term1: total_marks,
     Grade: grade,
-    Discipline_term1:dis_grade,
     Theory_term2:theory_term2,
     Practicle_term2:prac_term2,
     MarksObtained_term2:total_marks2,
     Grade2:grade2,
-    Discipline_term2:dis_grade2,
   });
   if(MarksInfo){
     console.log("Successfully created");

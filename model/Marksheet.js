@@ -29,10 +29,6 @@ const marksheetSchema= mongoose.Schema({
         type:'String',
         require: true,
     },
-    Discipline_term1:{
-        type:'String',
-        require: true,
-    },
     Theory_term2:{
         type: 'Number',
     },
@@ -44,10 +40,6 @@ const marksheetSchema= mongoose.Schema({
         require: true,
     },
     Grade2:{
-        type:'String',
-        require: true,
-    },
-    Discipline_term2:{
         type:'String',
         require: true,
     },
