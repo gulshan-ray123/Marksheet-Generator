@@ -16,6 +16,8 @@ const regAdminModel=require('../model/adminRegform')
 const RegisterLogoModel= require('../model/SchoolLogo')
 const cloudinary= require('cloudinary');
 const port= process.env.SERVER_PORT || 3000;
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage })
 const { OAuth2Client } = require('google-auth-library');
 cloudinary.v2.config({ 
   cloud_name: process.env.CLOUD_NAME,
@@ -39,7 +41,6 @@ uuidv4();
 //     cb(null, random+""+ file.originalname)
 //   }
 // })
-const upload = multer({ storage: storage })
 /* GET home page. */
 app.get('/', function(req, res) {
   res.render("mainPage.ejs");
@@ -294,7 +295,7 @@ app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
   //     console.log(error);
   // });
   // console.log(uploadResult);
-  // //Delete file 
+  //Delete file 
   // fs.unlink(req.file.path,
   //   (err)=> {
   //       if (err) console.log(err);
@@ -302,17 +303,17 @@ app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
   //           console.log("\nDeleted file");
   //       }
   //   });
-    const result = cloudinary.uploader.upload_stream(
-         { folder: 'uploads' },
-                 (error, result) => {
-                                  if (error) {
-              console.error("Cloudinary Upload Error:", error);
-              return res.status(500).json({ error: "Failed to upload file" });
-              }
+  const result = cloudinary.uploader.upload_stream(
+    { folder: 'uploads' },
+    (error, result) => {
+        if (error) {
+console.error("Cloudinary Upload Error:", error);
+return res.status(500).json({ error: "Failed to upload file" });
+}
 
-            console.log("File uploaded successfully:", result.secure_url);
-          }
-    );
+console.log("File uploaded successfully:", result.secure_url);
+    }
+);
     const student= await studentModel.create({
       enrollement:enrollement,
       studentName:stu_name,
@@ -332,10 +333,11 @@ app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
       // }
     })
     streamifier.createReadStream(req.file.buffer).pipe(stream); // Pipe buffer to Cloudinary
+
     console.log("Student Registered Successfully!");
-    console.log(student);
-  res.redirect('/success');
-})
+    // console.log(student);
+ res.redirect('/success');
+});
 // Route for Marks filling.
   app.get('/fill/marks',adminAuth,(req, res) => {
     res.render('marksfill.ejs');
@@ -527,23 +529,34 @@ app.post('/update/admin/securitykey',adminAuth,async(req,res)=>{
 
 // Upload School Logo
 app.post('/logo/registration',upload.single('org_logo'),async(req,res)=>{
-  console.log(req.file.path);
-  const uploadSchoolLogo = await cloudinary.uploader
-  .upload(
-     req.file.path
-  )
-  .catch((error) => {
-      console.log(error);
-  });
-  console.log(uploadSchoolLogo);
-  //Delete file 
-  fs.unlink(req.file.path,
-    (err)=> {
-        if (err) console.log(err);
-        else {
-            console.log("\nDeleted file");
+  console.log(req.file);
+  // const uploadSchoolLogo = await cloudinary.uploader
+  // .upload(
+  //    req.file.path
+  // )
+  // .catch((error) => {
+  //     console.log(error);
+  // });
+  // console.log(uploadSchoolLogo);
+  // //Delete file 
+  // fs.unlink(req.file.path,
+  //   (err)=> {
+  //       if (err) console.log(err);
+  //       else {
+  //           console.log("\nDeleted file");
+  //       }
+            const result = cloudinary.uploader.upload_stream(
+                { folder: 'uploads' },
+                (error, result) => {
+                    if (error) {
+          console.error("Cloudinary Upload Error:", error);
+          return res.status(500).json({ error: "Failed to upload file" });
         }
-    });
+
+        console.log("File uploaded successfully:", result.secure_url);
+                }
+            );
+  
     const SchoolLogo= await RegisterLogoModel.create({
       AffNo:req.body.aff_id,
       ImageId:uploadSchoolLogo.secure_url,
@@ -551,7 +564,7 @@ app.post('/logo/registration',upload.single('org_logo'),async(req,res)=>{
     console.log("Student Registered Successfully!");
     console.log(SchoolLogo);
   res.redirect('/success');
-})
+});
 app.get('/logout/admin',(req,res)=>{
   res.cookie("tokenadmin","")
   res.redirect('/admin/registration/page')
