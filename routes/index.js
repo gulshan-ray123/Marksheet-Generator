@@ -545,22 +545,23 @@ app.post('/logo/registration',upload.single('org_logo'),async(req,res)=>{
   //       else {
   //           console.log("\nDeleted file");
   //       }
-            const result = cloudinary.uploader.upload_stream(
-                { folder: 'uploads' },
-                (error, result) => {
-                    if (error) {
-          console.error("Cloudinary Upload Error:", error);
-          return res.status(500).json({ error: "Failed to upload file" });
-        }
+  const uploadSchoolLogo = cloudinary.uploader.upload_stream(
+    { folder: 'uploads' },
+    (error, result) => {
+        if (error) {
+console.error("Cloudinary Upload Error:", error);
+return res.status(500).json({ error: "Failed to upload file" });
+}
 
-        console.log("File uploaded successfully:", result.secure_url);
-                }
-            );
+console.log("File uploaded successfully:", uploadSchoolLogo.secure_url);
+    }
+);
   
     const SchoolLogo= await RegisterLogoModel.create({
       AffNo:req.body.aff_id,
       ImageId:uploadSchoolLogo.secure_url,
     })
+    streamifier.createReadStream(req.file.buffer).pipe(uploadSchoolLogo); // Pipe buffer to Cloudinary
     console.log("Student Registered Successfully!");
     console.log(SchoolLogo);
   res.redirect('/success');
