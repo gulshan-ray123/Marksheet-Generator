@@ -28,6 +28,7 @@ const jwtSecretKey= process.env.SECRET_KEY;
 const { v4: uuidv4 } = require('uuid');
 const { faErlang } = require('@fortawesome/free-brands-svg-icons');
 uuidv4();
+const folderName = 'uploads';
 // const storage = multer.diskStorage({
 //   destination: function (req, file, cb) {
 //     cb(null, './uploads')
@@ -309,7 +310,7 @@ app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
         // Upload file to Cloudinary
         const result = await new Promise((resolve, reject) => {
             const stream = cloudinary.uploader.upload_stream(
-                { folder: 'uploads' },
+                { folder: folderName },
                 (error, result) => {
                     if (error) {
                         reject(error);
