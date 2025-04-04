@@ -308,7 +308,6 @@ app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
 console.error("Cloudinary Upload Error:", error);
 return res.status(500).json({ error: "Failed to upload file" });
 }
-
 console.log("File uploaded successfully:", result.secure_url);
     }
 );
