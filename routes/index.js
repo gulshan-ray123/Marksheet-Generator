@@ -260,7 +260,7 @@ app.post('/result',async(req, res)=>{
 
 // Route for viewing Marksheet
 app.get('/view/marksheet/admin',adminAuth,(req,res)=>{
-  res.render('showMarkSheet.ejs');
+  res.render('showMarksheet.ejs');
 });
 app.get('/view/marksheet/student/google',googleAuth,(req,res)=>{
   res.render('studentResult.ejs');
