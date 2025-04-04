@@ -307,11 +307,21 @@ app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
   //   });
 
         // Upload file to Cloudinary
-        const result = await cloudinary.uploader.upload_stream({ folder: 'uploads' }, (error, result) => {
-            if (error) return res.status(500).json({ error: error.message });
-            res.json({ success: true, url: result.secure_url });
-        }).end(req.file.buffer); // Send the buffer to Cloudinary
-    } 
+        const result = await new Promise((resolve, reject) => {
+            const stream = cloudinary.uploader.upload_stream(
+                { folder: 'uploads' },
+                (error, result) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        resolve(result);
+                    }
+                }
+            );
+            // Pipe the file buffer into Cloudinary
+            stream.end(req.file.buffer);
+        });
+        res.json({ success: true, url: result.secure_url });
   console.log(result);
     const student= await studentModel.create({
       enrollement:enrollement,
@@ -334,7 +344,7 @@ app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
     console.log("Student Registered Successfully!");
     console.log(student);
   res.redirect('/success');
-})
+});
 // Route for Marks filling.
   app.get('/fill/marks',adminAuth,(req, res) => {
     res.render('marksfill.ejs');
