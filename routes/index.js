@@ -318,7 +318,7 @@ app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
                 }
             );
             // Pipe the file buffer into Cloudinary
-            stream.end(req.file.buffer);
+            // stream.end(req.file.buffer);
         // res.json({ success: true, url: result.secure_url });
   // console.log(result);
     const student= await studentModel.create({
