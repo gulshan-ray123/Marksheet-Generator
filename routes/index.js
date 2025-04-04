@@ -332,7 +332,7 @@ console.log("File uploaded successfully:", result.secure_url);
       //   }
       // }
     })
-    streamifier.createReadStream(req.file.buffer).pipe(stream); // Pipe buffer to Cloudinary
+    streamifier.createReadStream(req.file.buffer).pipe(result); // Pipe buffer to Cloudinary
 
     console.log("Student Registered Successfully!");
     // console.log(student);
