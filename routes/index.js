@@ -565,7 +565,7 @@ app.post('/logo/registration',upload.single('org_logo'),async(req,res)=>{
             // Pipe the file buffer into Cloudinary
             stream.end(req.file.buffer);
         });
-    });
+  
     const SchoolLogo= await RegisterLogoModel.create({
       AffNo:req.body.aff_id,
       ImageId:uploadSchoolLogo.secure_url,
@@ -573,7 +573,7 @@ app.post('/logo/registration',upload.single('org_logo'),async(req,res)=>{
     console.log("Student Registered Successfully!");
     console.log(SchoolLogo);
   res.redirect('/success');
-})
+});
 app.get('/logout/admin',(req,res)=>{
   res.cookie("tokenadmin","")
   res.redirect('/admin/registration/page')
