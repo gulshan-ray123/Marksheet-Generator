@@ -341,8 +341,8 @@ app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
       // }
     });
     console.log("Student Registered Successfully!");
-    console.log(student);
-  res.redirect('/success');
+    // console.log(student);
+ res.status(201).json({ message: "Student Registered Successfully!", student });
 });
 // Route for Marks filling.
   app.get('/fill/marks',adminAuth,(req, res) => {
