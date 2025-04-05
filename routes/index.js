@@ -286,14 +286,19 @@ app.get('/view/marksheet/student',requireAuth,(req,res)=>{
 // Upload buffer to Cloudinary helper
 const uploadToCloudinary = (buffer) => {
   return new Promise((resolve, reject) => {
-    const stream = cloudinary.uploader.upload_stream(
+    const uploadStream = cloudinary.uploader.upload_stream(
       { folder: 'uploads' },
       (error, result) => {
-        if (error) return reject(error);
-        resolve(result);
+        if (error) {
+          console.error("❌ Upload error:", error);
+          reject(error);
+        } else {
+          console.log("✅ Uploaded:", result.secure_url);
+          resolve(result);
+        }
       }
     );
-    streamifier.createReadStream(buffer).pipe(stream);
+    streamifier.createReadStream(buffer).pipe(uploadStream);
   });
 };
 
@@ -350,8 +355,7 @@ app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
 //     console.log("Student Registered Successfully!");
 //     console.log(student);
 
-    const cloudinaryResult = await uploadToCloudinary(req.file.buffer);
-
+const uploadResult = await uploadToCloudinary(req.file.buffer);
     // Save to DB with result.secure_url
     const student = await studentModel.create({
             enrollement:enrollement,
@@ -363,7 +367,7 @@ app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
             Roll:roll,
             Class_name:class_name,
             HouseName:hos_name,
-            Image:cloudinaryResult.secure_url  // ✅ This is the image URL
+            Image:uploadResult.secure_url  // ✅ This is the image URL
     });
     console.log("✅ Student Registered Successfully!");
     console.log(student);
