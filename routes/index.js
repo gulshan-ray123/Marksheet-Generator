@@ -311,7 +311,7 @@ return res.status(500).json({ error: "Failed to upload file" });
 console.log("File uploaded successfully:", result.secure_url);
     }
 );
-  cosole.log(result);
+  console.log(result);
     const student= await studentModel.create({
       enrollement:enrollement,
       studentName:stu_name,
