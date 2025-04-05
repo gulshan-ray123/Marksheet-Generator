@@ -301,39 +301,81 @@ app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
   //           console.log("\nDeleted file");
   //       }
   //   });
-  const result = cloudinary.uploader.upload_stream(
-    { folder: 'uploads' },
-    (error, result) => {
-        if (error) {
-console.error("Cloudinary Upload Error:", error);
-return res.status(500).json({ error: "Failed to upload file" });
-}
-console.log("File uploaded successfully:", result.secure_url);
+//   const result = cloudinary.uploader.upload_stream(
+//     { folder: 'uploads' },
+//     (error, result) => {
+//         if (error) {
+// console.error("Cloudinary Upload Error:", error);
+// return res.status(500).json({ error: "Failed to upload file" });
+// }
+// console.log("File uploaded successfully:", result.secure_url);
+//     }
+// );
+//   streamifier.createReadStream(req.file.buffer).pipe(result); // Pipe buffer to Cloudinary
+//     const student= await studentModel.create({
+//       enrollement:enrollement,
+//       studentName:stu_name,
+//       fatherName: fth_name,
+//       motherName:mth_name,
+//       DateofBirth:dob,
+//       Address:add,
+//       Roll:roll,
+//       Class_name:class_name,
+//       HouseName:hos_name,
+//       Image:result.secure_url,
+//       // Subject:{
+//       //   English:{
+//       //     theory: req.body.English,
+//       //     practicle: req.body.English
+//       //   }
+//       // }
+//     })
+//     // streamifier.createReadStream(req.file.buffer).pipe(result); // Pipe buffer to Cloudinary
+//     // console.log(result);
+//     console.log("Student Registered Successfully!");
+//     console.log(student);
+const stream = cloudinary.uploader.upload_stream(
+  { folder: 'uploads' },
+  async (error, result) => {
+    if (error) {
+      console.error("Cloudinary Upload Error:", error);
+      return res.status(500).json({ error: "Cloudinary upload failed" });
     }
-);
-  streamifier.createReadStream(req.file.buffer).pipe(result); // Pipe buffer to Cloudinary
-    const student= await studentModel.create({
+
+    if (!result || !result.secure_url) {
+      console.error("Cloudinary upload returned no result");
+      return res.status(500).json({ error: "No result from Cloudinary" });
+    }
+
+    console.log("✅ Uploaded to Cloudinary:", result.secure_url);
+
+    // Save to DB with result.secure_url
+    const student = await studentModel.create({
       enrollement:enrollement,
-      studentName:stu_name,
-      fatherName: fth_name,
-      motherName:mth_name,
-      DateofBirth:dob,
-      Address:add,
-      Roll:roll,
-      Class_name:class_name,
-      HouseName:hos_name,
-      Image:result.secure_url,
-      // Subject:{
-      //   English:{
-      //     theory: req.body.English,
-      //     practicle: req.body.English
-      //   }
-      // }
-    })
-    // streamifier.createReadStream(req.file.buffer).pipe(result); // Pipe buffer to Cloudinary
-    console.log(result);
-    console.log("Student Registered Successfully!");
+            studentName:stu_name,
+            fatherName: fth_name,
+            motherName:mth_name,
+            DateofBirth:dob,
+            Address:add,
+            Roll:roll,
+            Class_name:class_name,
+            HouseName:hos_name,
+            Image: result.secure_url // ✅ This is the image URL
+    });
+
+    console.log("✅ Student Registered Successfully!");
     console.log(student);
+
+    return res.status(201).json({
+      message: "Student registered successfully",
+      imageUrl: result.secure_url,
+      student
+    });
+  }
+);
+// Pipe buffer to Cloudinary stream
+streamifier.createReadStream(req.file.buffer).pipe(stream);
+
  res.redirect('/success');
 });
 // Route for Marks filling.
