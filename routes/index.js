@@ -311,7 +311,7 @@ return res.status(500).json({ error: "Failed to upload file" });
 console.log("File uploaded successfully:", result.secure_url);
     }
 );
-  console.log(result);
+  streamifier.createReadStream(req.file.buffer).pipe(result); // Pipe buffer to Cloudinary
     const student= await studentModel.create({
       enrollement:enrollement,
       studentName:stu_name,
@@ -330,8 +330,8 @@ console.log("File uploaded successfully:", result.secure_url);
       //   }
       // }
     })
-    streamifier.createReadStream(req.file.buffer).pipe(result); // Pipe buffer to Cloudinary
-
+    // streamifier.createReadStream(req.file.buffer).pipe(result); // Pipe buffer to Cloudinary
+    console.log(result);
     console.log("Student Registered Successfully!");
     console.log(student);
  res.redirect('/success');
