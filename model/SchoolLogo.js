@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 // Creating Schema
 const RegisterLogo= mongoose.Schema({
     AffNo:{
-        type:'Number',
+        type:Number,
         require:true,
     },
  ImageId:{
-    type:"string",
+    type:String,
     require:true,
  }
 });

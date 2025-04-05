@@ -1,31 +1,31 @@
 const mongoose = require('mongoose');
 const RepUserInfo= mongoose.Schema({
     schoolName:{
-        type: 'string',
+        type: String,
         required: true
     },
     AffiliationBoard:{
-        type: 'string',
+        type: String,
         require: true
     },
     AffiliationNo:{
-        type: 'Number',
+        type: Number,
         require: true,
     },
     Address:{
-        type: 'string',
+        type: String,
         require: true
     },
     Phone:{
-        type: 'number',
+        type: Number,
         require: true
     },
     email:{
-        type: 'string',
+        type: String,
         require: true
     },
     Session:{
-        type: 'string',
+        type: String,
         require: true
     }
 })

@@ -1,59 +1,59 @@
 const mongoose = require('mongoose');
 const marksheetSchema= mongoose.Schema({
     Enrollement:{
-        type: 'Number',
+        type: Number,
     },
     MaxTheory:{
-        type: 'Number',
+        type: Number,
         require: true,
     },
     MaxPracticle:{
-        type: 'Number',
+        type: Number,
         require: true,
     },
     Subject:{
-        type: 'string',
+        type: String,
         require: true,
     },
     Theory_term1:{
-        type: 'Number',
+        type: Number,
     },
     Practicle_term1:{
-        type: 'Number',
+        type: Number,
     },
     MarksObtained_term1:{
-        type:'Number',
+        type:Number,
         require: true,
     },
     Grade:{
-        type:'String',
+        type:String,
         require: true,
     },
     Theory_term2:{
-        type: 'Number',
+        type: Number,
     },
     Practicle_term2:{
-        type: 'Number',
+        type: Number,
     },
     MarksObtained_term2:{
-        type:'Number',
+        type:Number,
         require: true,
     },
     Grade2:{
-        type:'String',
+        type:String,
         require: true,
     },
     Date:{
-        type:'string',
+        type:String,
     },
     Total_full:{
-        type:'Number',
+        type:Number,
     },
     Total_full:{
-        type:'Number',
+        type:Number,
     },
     Percentage:{
-        type:'Number',
+        type:Number,
     }
 })
 

@@ -1,27 +1,27 @@
 const mongoose= require('mongoose');
  const DisplininarySchema= mongoose.Schema({
     Enrollement:{
-       type:'Number',
+       type:Number,
        require: true,
     },
     Affiliation:{
-        type:'Number',
+        type:Number,
         require: true,
     },
     Dis_term1:{
-        type:'String',
+        type:String,
     },
     Dis_term2:{
-        type:'String',
+        type:String,
     },
     Teacher_Remarks:{
-        type:'String',
+        type:String,
     },
     Promoted:{
-        type:"String",
+        type:String,
     },
     Result_key:{
-        type:"Number",
+        type:Number,
         require:true,
     }
 })

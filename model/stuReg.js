@@ -4,44 +4,44 @@ const mongoose= require('mongoose');
 
 const studentSchema= mongoose.Schema({
     enrollement:{
-        type: 'number',
-        require:true,
+        type: Number,
+        required:true,
     },
     studentName:{
-        type: 'string',
-        require:true,
+        type: String,
+        required:true,
     },
     fatherName:{
-        type: 'string',
-        require:true,
+        type: String,
+        required:true,
     },
     motherName:{
-        type: 'string',
-        require:true,
+        type: String,
+        required:true,
     },
     DateofBirth:{
-        type: 'string',
-        require:true,
+        type: Date,
+        required:true,
     },
     Address:{
-        type: 'string',
-        require:true,
+        type: String,
+        required:true,
     },
     Class_name:{
-        type: 'string',
-        require:true,
+        type: String,
+        required:true,
     },
     Roll:{
-        type: 'number',
-        require:true,
+        type: Number,
+        required:true,
     },
     HouseName:{
-        type: 'string',
-        require:true,
+        type: String,
+        required:true,
     },
     Image:{
-        type:'string',
-        require:true,
+        type:String,
+        required:true,
     },
 })
 

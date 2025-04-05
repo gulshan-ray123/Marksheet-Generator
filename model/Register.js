@@ -6,15 +6,15 @@ mongoose.connect(db);
 // Creating Schema
 const RegisterUser= mongoose.Schema({
     username:{
-        type:"String",
+        type:String,
         require:true,
     },
     email:{
-        type:"String",
+        type:String,
         require:true,
     },
     password:{
-        type:"String",
+        type:String,
         require:true,
     }
 });

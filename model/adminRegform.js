@@ -2,19 +2,19 @@ const mongoose = require('mongoose');
 // Creating Schema
 const RegisterAdmin= mongoose.Schema({
     username:{
-        type:"string",
+        type:String,
         require:true,
     },
     email:{
-        type:"String",
+        type:String,
         require:true,
     },
     password:{
-        type:"String",
+        type:String,
         require:true,
     },
     Secret_Key:{
-        type:"Number",
+        type:Number,
         require:true,
     }
 });
