@@ -311,6 +311,7 @@ return res.status(500).json({ error: "Failed to upload file" });
 console.log("File uploaded successfully:", result.secure_url);
     }
 );
+  cosole.log(result);
     const student= await studentModel.create({
       enrollement:enrollement,
       studentName:stu_name,
@@ -332,7 +333,7 @@ console.log("File uploaded successfully:", result.secure_url);
     streamifier.createReadStream(req.file.buffer).pipe(result); // Pipe buffer to Cloudinary
 
     console.log("Student Registered Successfully!");
-    // console.log(student);
+    console.log(student);
  res.redirect('/success');
 });
 // Route for Marks filling.
