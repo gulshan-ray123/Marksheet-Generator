@@ -290,7 +290,8 @@ const uploadToCloudinary = (buffer) => {
       { folder: 'uploads' },
       (error, result) => {
         if (error) {
-          console.error("❌ Upload error:", error);
+          console.er
+          ror("❌ Upload error:", error);
           reject(error);
         } else {
           console.log("✅ Uploaded:", result.secure_url);
@@ -355,7 +356,7 @@ app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
 //     console.log("Student Registered Successfully!");
 //     console.log(student);
 
-const uploadResult = await uploadToCloudinary(req.file.buffer);
+const uploadResult = uploadToCloudinary(req.file.buffer);
     // Save to DB with result.secure_url
     const student = await studentModel.create({
             enrollement:enrollement,
