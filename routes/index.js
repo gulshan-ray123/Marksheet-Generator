@@ -356,7 +356,7 @@ app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
 //     console.log("Student Registered Successfully!");
 //     console.log(student);
 
-const uploadResult = uploadToCloudinary(req.file.buffer);
+const uploadResult = await uploadToCloudinary(req.file.buffer);
     // Save to DB with result.secure_url
     const student = await studentModel.create({
             enrollement:enrollement,
@@ -370,9 +370,14 @@ const uploadResult = uploadToCloudinary(req.file.buffer);
             HouseName:hos_name,
             Image:uploadResult.secure_url  // ✅ This is the image URL
     });
-    console.log("✅ Student Registered Successfully!");
-    console.log(student);
-    res.redirect('/success');
+    // console.log("✅ Student Registered Successfully!");
+    // console.log(student);
+    // res.redirect('/success');
+    return res.status(201).json({
+      message: "✅ Student created successfully",
+      imageUrl: cloudResult.secure_url,
+      student
+    });
   }
 );
 // Route for Marks filling.
