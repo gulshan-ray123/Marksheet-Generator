@@ -286,20 +286,25 @@ app.get('/view/marksheet/student',requireAuth,(req,res)=>{
 // Upload buffer to Cloudinary helper
 const uploadToCloudinary = (buffer) => {
   return new Promise((resolve, reject) => {
-    const uploadStream = cloudinary.uploader.upload_stream(
+    const stream = cloudinary.uploader.upload_stream(
       { folder: 'uploads' },
       (error, result) => {
         if (error) {
-          console.er
-          ror("❌ Upload error:", error);
-          reject(error);
-        } else {
-          console.log("✅ Uploaded:", result.secure_url);
-          resolve(result);
+          console.error("❌ Cloudinary error:", error);
+          return reject(error);
         }
+        if (!result) {
+          return reject(new Error("❌ No result from Cloudinary"));
+        }
+        resolve(result);
       }
     );
-    streamifier.createReadStream(buffer).pipe(uploadStream);
+
+    try {
+      streamifier.createReadStream(buffer).pipe(stream);
+    } catch (err) {
+      reject(err);
+    }
   });
 };
 
@@ -374,15 +379,12 @@ const uploadResult = await uploadToCloudinary(req.file.buffer);
     // console.log("✅ Student Registered Successfully!");
     // console.log(student);
     // res.redirect('/success');
-    return res.status(201).json({
-      message: "✅ Student created successfully",
-      imageUrl: uploadResult.secure_url,
-      student
-    });
+    console.log("✅ Student created:", student);
+    return res.status(201).json({ message: "Success", student });
   }
-  catch (error) {
-    console.error("❌ Error:", error);
-    return res.status(500).json({ error: 'Something went wrong.' });
+  catch (err) {
+    console.error("❌ Server error:", err);
+    return res.status(500).json({ error: "Upload or DB error", detail: err.message });
   }
   });
 // Route for Marks filling.
