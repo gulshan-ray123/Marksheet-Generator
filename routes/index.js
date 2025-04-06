@@ -284,39 +284,42 @@ app.get('/view/marksheet/student',requireAuth,(req,res)=>{
 // Route for Student Registeration.
 
 // Upload buffer to Cloudinary helperconst uploadToCloudinary = (buffer) => {
-  return new Promise((resolve, reject) => {
-    const timeout = setTimeout(() => {
-      console.error("❌ Cloudinary upload timed out");
-      reject(new Error("Cloudinary upload timed out"));
-    }, 15000); // 15 seconds max
-
-    const stream = cloudinary.uploader.upload_stream(
-      { folder: 'uploads' },
-      (error, result) => {
+  const uploadToCloudinary = (buffer) => {
+    return new Promise((resolve, reject) => {
+      const timeout = setTimeout(() => {
+        console.error("❌ Cloudinary upload timed out");
+        reject(new Error("Cloudinary upload timed out"));
+      }, 15000); // 15 seconds max
+  
+      const stream = cloudinary.uploader.upload_stream(
+        { folder: 'uploads' },
+        (error, result) => {
+          clearTimeout(timeout);
+          if (error) {
+            console.error("❌ Upload error:", error);
+            return reject(error);
+          }
+          if (!result) {
+            console.error("❌ No result returned by Cloudinary");
+            return reject(new Error("No result"));
+          }
+  
+          console.log("✅ Cloudinary result:", result.secure_url);
+          resolve(result);
+        }
+      );
+  
+      try {
+        if (!buffer) throw new Error("Buffer is undefined!");
+        streamifier.createReadStream(buffer).pipe(stream);
+      } catch (err) {
         clearTimeout(timeout);
-        if (error) {
-          console.error("❌ Upload error:", error);
-          return reject(error);
-        }
-        if (!result) {
-          console.error("❌ No result returned by Cloudinary");
-          return reject(new Error("No result"));
-        }
-
-        console.log("✅ Cloudinary result:", result.secure_url);
-        resolve(result);
+        console.error("❌ Streamifier error:", err);
+        reject(err);
       }
-    );
-
-    try {
-      if (!buffer) throw new Error("Buffer is undefined!");
-      streamifier.createReadStream(buffer).pipe(stream);
-    } catch (err) {
-      clearTimeout(timeout);
-      console.error("❌ Streamifier error:", err);
-      reject(err);
-    }
-  });
+    });
+  };
+  
 
 
 app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
