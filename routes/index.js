@@ -304,6 +304,7 @@ const uploadToCloudinary = (buffer) => {
 };
 
 app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
+  try{
   let{enrollement,stu_name,fth_name,mth_name,dob,add,class_name,roll,hos_name}= req.body;
 
   // const uploadResult = await cloudinary.uploader
@@ -375,11 +376,15 @@ const uploadResult = await uploadToCloudinary(req.file.buffer);
     // res.redirect('/success');
     return res.status(201).json({
       message: "✅ Student created successfully",
-      imageUrl: cloudResult.secure_url,
+      imageUrl: uploadResult.secure_url,
       student
     });
   }
-);
+  catch (error) {
+    console.error("❌ Error:", error);
+    return res.status(500).json({ error: 'Something went wrong.' });
+  }
+  });
 // Route for Marks filling.
   app.get('/fill/marks',adminAuth,(req, res) => {
     res.render('marksfill.ejs');
