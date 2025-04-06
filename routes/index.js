@@ -283,33 +283,46 @@ app.get('/view/marksheet/student',requireAuth,(req,res)=>{
 // Route for student verification.
 // Route for Student Registeration.
 
-// Upload buffer to Cloudinary helper
-const uploadToCloudinary = (buffer) => {
+// Upload buffer to Cloudinary helperconst uploadToCloudinary = (buffer) => {
   return new Promise((resolve, reject) => {
+    const timeout = setTimeout(() => {
+      console.error("❌ Cloudinary upload timed out");
+      reject(new Error("Cloudinary upload timed out"));
+    }, 15000); // 15 seconds max
+
     const stream = cloudinary.uploader.upload_stream(
       { folder: 'uploads' },
       (error, result) => {
+        clearTimeout(timeout);
         if (error) {
-          console.error("❌ Cloudinary error:", error);
+          console.error("❌ Upload error:", error);
           return reject(error);
         }
         if (!result) {
-          return reject(new Error("❌ No result from Cloudinary"));
+          console.error("❌ No result returned by Cloudinary");
+          return reject(new Error("No result"));
         }
+
+        console.log("✅ Cloudinary result:", result.secure_url);
         resolve(result);
       }
     );
 
     try {
+      if (!buffer) throw new Error("Buffer is undefined!");
       streamifier.createReadStream(buffer).pipe(stream);
     } catch (err) {
+      clearTimeout(timeout);
+      console.error("❌ Streamifier error:", err);
       reject(err);
     }
   });
-};
+
 
 app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
+  console.log("📥 Received POST /stu/registration");
   try{
+    console.log("📤 Uploading to Cloudinary...");
   let{enrollement,stu_name,fth_name,mth_name,dob,add,class_name,roll,hos_name}= req.body;
 
   // const uploadResult = await cloudinary.uploader
@@ -363,6 +376,7 @@ app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
 //     console.log(student);
 
 const uploadResult = await uploadToCloudinary(req.file.buffer);
+console.log("✅ Cloudinary URL:", uploadResult.secure_url);
     // Save to DB with result.secure_url
     const student = await studentModel.create({
             enrollement:enrollement,
@@ -383,8 +397,8 @@ const uploadResult = await uploadToCloudinary(req.file.buffer);
     return res.status(201).json({ message: "Success", student });
   }
   catch (err) {
-    console.error("❌ Server error:", err);
-    return res.status(500).json({ error: "Upload or DB error", detail: err.message });
+    console.error("❌ Server error:", err.message);
+    return res.status(500).json({ error: err.message });
   }
   });
 // Route for Marks filling.
