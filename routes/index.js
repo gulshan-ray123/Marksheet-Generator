@@ -286,14 +286,9 @@ app.get('/view/marksheet/student',requireAuth,(req,res)=>{
 // Upload buffer to Cloudinary helperconst uploadToCloudinary = (buffer) => {
   const uploadToCloudinary = (buffer) => {
     return new Promise((resolve, reject) => {
-      const timeout = setTimeout(() => {
-        reject(new Error("Cloudinary upload timed out"));
-      }, 10000); // Timeout after 10 seconds
-  
       const stream = cloudinary.uploader.upload_stream(
         { folder: 'uploads' },
         (error, result) => {
-          clearTimeout(timeout);
           if (error) {
             console.error("❌ Cloudinary error:", error);
             reject(error);
@@ -303,9 +298,7 @@ app.get('/view/marksheet/student',requireAuth,(req,res)=>{
         }
       );
   
-      // Pipe and end stream properly
-      const readable = streamifier.createReadStream(buffer);
-      readable.pipe(stream);
+      streamifier.createReadStream(buffer).pipe(stream);
     });
   };
   
