@@ -2,7 +2,9 @@ const express = require("express");
 const session= require('express-session');
 require('dotenv').config();
 const app = express();
-const multer  = require('multer')
+const multer = require('multer');
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 const ReportInfo = require('../model/ReportCard');
 const marksModel= require('../model/Marksheet');
 const disciplineModel=require('../model/Disciplinemarks');
@@ -16,8 +18,6 @@ const regAdminModel=require('../model/adminRegform')
 const RegisterLogoModel= require('../model/SchoolLogo')
 const cloudinary= require('cloudinary');
 const port= process.env.SERVER_PORT || 3000;
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage })
 const { OAuth2Client } = require('google-auth-library');
 cloudinary.v2.config({ 
   cloud_name: process.env.CLOUD_NAME,
@@ -287,36 +287,25 @@ app.get('/view/marksheet/student',requireAuth,(req,res)=>{
   const uploadToCloudinary = (buffer) => {
     return new Promise((resolve, reject) => {
       const timeout = setTimeout(() => {
-        console.error("❌ Cloudinary upload timed out");
         reject(new Error("Cloudinary upload timed out"));
-      }, 15000); // 15 seconds max
+      }, 10000); // Timeout after 10 seconds
   
       const stream = cloudinary.uploader.upload_stream(
         { folder: 'uploads' },
         (error, result) => {
           clearTimeout(timeout);
           if (error) {
-            console.error("❌ Upload error:", error);
-            return reject(error);
+            console.error("❌ Cloudinary error:", error);
+            reject(error);
+          } else {
+            resolve(result);
           }
-          if (!result) {
-            console.error("❌ No result returned by Cloudinary");
-            return reject(new Error("No result"));
-          }
-  
-          console.log("✅ Cloudinary result:", result.secure_url);
-          resolve(result);
         }
       );
   
-      try {
-        if (!buffer) throw new Error("Buffer is undefined!");
-        streamifier.createReadStream(buffer).pipe(stream);
-      } catch (err) {
-        clearTimeout(timeout);
-        console.error("❌ Streamifier error:", err);
-        reject(err);
-      }
+      // Pipe and end stream properly
+      const readable = streamifier.createReadStream(buffer);
+      readable.pipe(stream);
     });
   };
   
