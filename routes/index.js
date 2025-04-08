@@ -297,17 +297,12 @@ app.get('/view/marksheet/student',requireAuth,(req,res)=>{
           }
         }
       );
-  
       streamifier.createReadStream(buffer).pipe(stream);
     });
   };
-  
-
-
 app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
   console.log("📥 Received POST /stu/registration");
   try{
-    console.log("📤 Uploading to Cloudinary...");
   let{enrollement,stu_name,fth_name,mth_name,dob,add,class_name,roll,hos_name}= req.body;
 
   // const uploadResult = await cloudinary.uploader
@@ -359,7 +354,7 @@ app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
 //     // console.log(result);
 //     console.log("Student Registered Successfully!");
 //     console.log(student);
-
+console.log("📤 Uploading to Cloudinary...");
 const uploadResult = await uploadToCloudinary(req.file.buffer);
 console.log("✅ Cloudinary URL:", uploadResult.secure_url);
     // Save to DB with result.secure_url
