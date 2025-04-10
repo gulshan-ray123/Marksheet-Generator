@@ -4,7 +4,7 @@ require('dotenv').config();
 const app = express();
 const multer = require('multer');
 // const storage = multer.memoryStorage();
-
+const path = require('path');   
 const ReportInfo = require('../model/ReportCard');
 const marksModel= require('../model/Marksheet');
 const disciplineModel=require('../model/Disciplinemarks');
