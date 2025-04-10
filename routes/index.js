@@ -285,115 +285,181 @@ app.get('/view/marksheet/student',requireAuth,(req,res)=>{
 
 // Upload buffer to Cloudinary helperconst uploadToCloudinary = (buffer) => {
   
-  function uploadToCloudinary(buffer) {
-    return new Promise((resolve, reject) => {
-      if (!buffer) {
-        console.error("⚠️ Buffer is missing");
-        return reject(new Error("No buffer"));
-      }
+//   function uploadToCloudinary(buffer) {
+//     return new Promise((resolve, reject) => {
+//       if (!buffer) {
+//         console.error("⚠️ Buffer is missing");
+//         return reject(new Error("No buffer"));
+//       }
   
-      const stream = cloudinary.uploader.upload_stream(
-        { folder: "uploads" },
-        (err, result) => {
-          if (err) {
-            console.error("❌ Cloudinary upload error:", err);
-            return reject(err);
-          }
-          if (!result || !result.secure_url) {
-            console.error("❌ No secure_url returned:", result);
-            return reject(new Error("No secure_url returned"));
-          }
+//       const stream = cloudinary.uploader.upload_stream(
+//         { folder: "uploads" },
+//         (err, result) => {
+//           if (err) {
+//             console.error("❌ Cloudinary upload error:", err);
+//             return reject(err);
+//           }
+//           if (!result || !result.secure_url) {
+//             console.error("❌ No secure_url returned:", result);
+//             return reject(new Error("No secure_url returned"));
+//           }
   
-          console.log("✅ Upload complete:", result.secure_url);
-          resolve(result); // make sure you resolve the full result!
-        }
-      );
-      streamifier.createReadStream(buffer).pipe(stream);
-    });
-  }
+//           console.log("✅ Upload complete:", result.secure_url);
+//           resolve(result); // make sure you resolve the full result!
+//         }
+//       );
+//       streamifier.createReadStream(buffer).pipe(stream);
+//     });
+//   }
   
   
-app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
-  console.log("📥 Received POST /stu/registration");
-  try{
-  let{enrollement,stu_name,fth_name,mth_name,dob,add,class_name,roll,hos_name}= req.body;
+// app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
+//   console.log("📥 Received POST /stu/registration");
+//   try{
+//   let{enrollement,stu_name,fth_name,mth_name,dob,add,class_name,roll,hos_name}= req.body;
 
-  // const uploadResult = await cloudinary.uploader
-  // .upload(
-  //    req.file.path
-  // )
-  // .catch((error) => {
-  //     console.log(error);
-  // });
-  // console.log(uploadResult);
-  //Delete file 
-  // fs.unlink(req.file.path,
-  //   (err)=> {
-  //       if (err) console.log(err);
-  //       else {
-  //           console.log("\nDeleted file");
-  //       }
-  //   });
-//   const result = cloudinary.uploader.upload_stream(
-//     { folder: 'uploads' },
-//     (error, result) => {
-//         if (error) {
-// console.error("Cloudinary Upload Error:", error);
-// return res.status(500).json({ error: "Failed to upload file" });
-// }
-// console.log("File uploaded successfully:", result.secure_url);
-//     }
-// );
-//   streamifier.createReadStream(req.file.buffer).pipe(result); // Pipe buffer to Cloudinary
-//     const student= await studentModel.create({
-//       enrollement:enrollement,
-//       studentName:stu_name,
-//       fatherName: fth_name,
-//       motherName:mth_name,
-//       DateofBirth:dob,
-//       Address:add,
-//       Roll:roll,
-//       Class_name:class_name,
-//       HouseName:hos_name,
-//       Image:result.secure_url,
-//       // Subject:{
-//       //   English:{
-//       //     theory: req.body.English,
-//       //     practicle: req.body.English
-//       //   }
-//       // }
-//     })
-//     // streamifier.createReadStream(req.file.buffer).pipe(result); // Pipe buffer to Cloudinary
-//     // console.log(result);
-//     console.log("Student Registered Successfully!");
-//     console.log(student);
-console.log("📤 Uploading to Cloudinary...");
-const uploadResult = await uploadToCloudinary(req.file.buffer);
-console.log("✅ Cloudinary URL:", uploadResult.secure_url);
-    // Save to DB with result.secure_url
+//   // const uploadResult = await cloudinary.uploader
+//   // .upload(
+//   //    req.file.path
+//   // )
+//   // .catch((error) => {
+//   //     console.log(error);
+//   // });
+//   // console.log(uploadResult);
+//   //Delete file 
+//   // fs.unlink(req.file.path,
+//   //   (err)=> {
+//   //       if (err) console.log(err);
+//   //       else {
+//   //           console.log("\nDeleted file");
+//   //       }
+//   //   });
+// //   const result = cloudinary.uploader.upload_stream(
+// //     { folder: 'uploads' },
+// //     (error, result) => {
+// //         if (error) {
+// // console.error("Cloudinary Upload Error:", error);
+// // return res.status(500).json({ error: "Failed to upload file" });
+// // }
+// // console.log("File uploaded successfully:", result.secure_url);
+// //     }
+// // );
+// //   streamifier.createReadStream(req.file.buffer).pipe(result); // Pipe buffer to Cloudinary
+// //     const student= await studentModel.create({
+// //       enrollement:enrollement,
+// //       studentName:stu_name,
+// //       fatherName: fth_name,
+// //       motherName:mth_name,
+// //       DateofBirth:dob,
+// //       Address:add,
+// //       Roll:roll,
+// //       Class_name:class_name,
+// //       HouseName:hos_name,
+// //       Image:result.secure_url,
+// //       // Subject:{
+// //       //   English:{
+// //       //     theory: req.body.English,
+// //       //     practicle: req.body.English
+// //       //   }
+// //       // }
+// //     })
+// //     // streamifier.createReadStream(req.file.buffer).pipe(result); // Pipe buffer to Cloudinary
+// //     // console.log(result);
+// //     console.log("Student Registered Successfully!");
+// //     console.log(student);
+// console.log("📤 Uploading to Cloudinary...");
+// const uploadResult = await uploadToCloudinary(req.file.buffer);
+// console.log("✅ Cloudinary URL:", uploadResult.secure_url);
+//     // Save to DB with result.secure_url
+//     const student = await studentModel.create({
+//             enrollement:enrollement,
+//             studentName:stu_name,
+//             fatherName: fth_name,
+//             motherName:mth_name,
+//             DateofBirth:dob,
+//             Address:add,
+//             Roll:roll,
+//             Class_name:class_name,
+//             HouseName:hos_name,
+//             Image:uploadResult.secure_url  // ✅ This is the image URL
+//     });
+//     // console.log("✅ Student Registered Successfully!");
+//     // console.log(student);
+//     // res.redirect('/success');
+//     console.log("✅ Student created:", student);
+//     return res.status(201).json({ message: "Success", student });
+//   }
+//   catch (err) {
+//     console.error("❌ Server error:", err.message);
+//     return res.status(500).json({ error: err.message });
+//   }
+//   });
+function uploadToCloudinary(buffer) {
+  return new Promise((resolve, reject) => {
+    if (!buffer) {
+      return reject(new Error("No buffer provided"));
+    }
+
+    const stream = cloudinary.uploader.upload_stream(
+      { folder: 'uploads' },
+      (err, result) => {
+        if (err) return reject(err);
+        if (!result || !result.secure_url) return reject(new Error("No secure_url returned"));
+        resolve(result);
+      }
+    );
+
+    streamifier.createReadStream(buffer).pipe(stream);
+  });
+}
+
+// Upload with timeout helper
+function uploadWithTimeout(buffer, timeout = 10000) {
+  return Promise.race([
+    uploadToCloudinary(buffer),
+    new Promise((_, reject) =>
+      setTimeout(() => reject(new Error("⏱ Upload timed out")), timeout)
+    )
+  ]);
+}
+
+// Registration route
+app.post('/stu/registration', upload.single('school_logo'), async (req, res) => {
+  console.log("📥 Received POST /stu/registration");
+
+  try {
+    const { enrollement, stu_name, fth_name, mth_name, dob, add, class_name, roll, hos_name } = req.body;
+
+    if (!req.file || !req.file.buffer) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    console.log("📤 Uploading to Cloudinary...");
+    const uploadResult = await uploadWithTimeout(req.file.buffer);
+    console.log("✅ Cloudinary URL:", uploadResult.secure_url);
+
     const student = await studentModel.create({
-            enrollement:enrollement,
-            studentName:stu_name,
-            fatherName: fth_name,
-            motherName:mth_name,
-            DateofBirth:dob,
-            Address:add,
-            Roll:roll,
-            Class_name:class_name,
-            HouseName:hos_name,
-            Image:uploadResult.secure_url  // ✅ This is the image URL
+      enrollement,
+      studentName: stu_name,
+      fatherName: fth_name,
+      motherName: mth_name,
+      DateofBirth: dob,
+      Address: add,
+      Roll: roll,
+      Class_name: class_name,
+      HouseName: hos_name,
+      Image: uploadResult.secure_url
     });
-    // console.log("✅ Student Registered Successfully!");
-    // console.log(student);
-    // res.redirect('/success');
+
     console.log("✅ Student created:", student);
     return res.status(201).json({ message: "Success", student });
-  }
-  catch (err) {
+
+  } catch (err) {
     console.error("❌ Server error:", err.message);
     return res.status(500).json({ error: err.message });
   }
-  });
+});
+
 // Route for Marks filling.
   app.get('/fill/marks',adminAuth,(req, res) => {
     res.render('marksfill.ejs');
