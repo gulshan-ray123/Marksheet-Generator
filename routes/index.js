@@ -284,23 +284,34 @@ app.get('/view/marksheet/student',requireAuth,(req,res)=>{
 // Route for Student Registeration.
 
 // Upload buffer to Cloudinary helperconst uploadToCloudinary = (buffer) => {
-
+  
   function uploadToCloudinary(buffer) {
     return new Promise((resolve, reject) => {
+      if (!buffer) {
+        console.error("⚠️ Buffer is missing");
+        return reject(new Error("No buffer"));
+      }
+  
       const stream = cloudinary.uploader.upload_stream(
-        { folder: 'uploads' },
-        (error, result) => {
-          if (error) {
-            console.error("❌ Cloudinary Upload Error:", error);
-            return reject(error);
+        { folder: "uploads" },
+        (err, result) => {
+          if (err) {
+            console.error("❌ Cloudinary upload error:", err);
+            return reject(err);
           }
-          resolve(result);
+          if (!result || !result.secure_url) {
+            console.error("❌ No secure_url returned:", result);
+            return reject(new Error("No secure_url returned"));
+          }
+  
+          console.log("✅ Upload complete:", result.secure_url);
+          resolve(result); // make sure you resolve the full result!
         }
       );
-  
       streamifier.createReadStream(buffer).pipe(stream);
     });
   }
+  
   
 app.post('/stu/registration',upload.single('school_logo'),async(req,res)=>{
   console.log("📥 Received POST /stu/registration");
