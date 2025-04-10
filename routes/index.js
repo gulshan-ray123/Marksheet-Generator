@@ -396,25 +396,37 @@ app.get('/view/marksheet/student',requireAuth,(req,res)=>{
 //   });
 function uploadToCloudinary(buffer) {
   return new Promise((resolve, reject) => {
-    if (!buffer) {
-      return reject(new Error("No buffer provided"));
+    try {
+      const uploadStream = cloudinary.uploader.upload_stream(
+        { folder: 'uploads' },
+        (error, result) => {
+          if (error) {
+            console.error("❌ Cloudinary Error:", error);
+            return reject(error);
+          }
+          if (!result || !result.secure_url) {
+            console.error("❌ No secure_url in response");
+            return reject(new Error("No secure_url returned"));
+          }
+          console.log("✅ Cloudinary upload completed");
+          return resolve(result);
+        }
+      );
+
+      // Pipe stream
+      const readableStream = streamifier.createReadStream(buffer);
+      readableStream.on('error', err => {
+        console.error("❌ Stream error:", err);
+        reject(err);
+      });
+      readableStream.pipe(uploadStream);
+    } catch (err) {
+      console.error("❌ UploadToCloudinary error:", err);
+      reject(err);
     }
-
-    const stream = cloudinary.uploader.upload_stream(
-      { folder: 'uploads' },
-      (err, result) => {
-        if (err) return reject(err);
-        if (!result || !result.secure_url) return reject(new Error("No secure_url returned"));
-        resolve(result);
-      }
-    );
-
-    streamifier.createReadStream(buffer).pipe(stream);
   });
 }
-
-// Upload with timeout helper
-function uploadWithTimeout(buffer, timeout = 10000) {
+function uploadWithTimeout(buffer, timeout = 15000) {
   return Promise.race([
     uploadToCloudinary(buffer),
     new Promise((_, reject) =>
